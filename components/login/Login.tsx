@@ -185,7 +185,7 @@ export default function Login() {
                     <div className="relative w-full h-full">
                         <Image
                             src="/login/maybe.jpg"
-                            alt="Dashboard Preview"
+                            alt=""
                             fill
                             sizes="50vw"
                             priority

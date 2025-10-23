@@ -15,8 +15,12 @@
         "next-env.d.ts": true,
         "*.ts": false,
         "**/*.ts": false,
-        "**/lib": false,
-        "lib": false
+        "**/lib": true,
+        "lib": true,
+        "**/eslint.config.mjs": true,
+        "*.mjs": true,
+        "eslint.config.mjs": true,
+        "**/*.mjs": true
     },
     "explorerExclude.backup": {}
 }
