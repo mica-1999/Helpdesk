@@ -15,8 +15,8 @@
         "next-env.d.ts": true,
         "*.ts": false,
         "**/*.ts": false,
-        "**/lib": true,
-        "lib": true
+        "**/lib": false,
+        "lib": false
     },
     "explorerExclude.backup": {}
 }
