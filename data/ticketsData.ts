@@ -1,5 +1,6 @@
 export interface Ticket {
     id: number;
+    ticketId: string;
     requester: {
         name: string;
         email: string;
@@ -18,6 +19,7 @@ export interface Ticket {
 export const ticketsData: Ticket[] = [
     {
         id: 1,
+        ticketId: "24158",
         requester: {
             name: "David Silva",
             email: "david.silva@madeira.gov.pt",
@@ -34,6 +36,7 @@ export const ticketsData: Ticket[] = [
     },
     {
         id: 2,
+        ticketId: "24237",
         requester: {
             name: "Maria Santos",
             email: "maria.santos@madeira.gov.pt",
@@ -50,6 +53,7 @@ export const ticketsData: Ticket[] = [
     },
     {
         id: 3,
+        ticketId: "24419",
         requester: {
             name: "João Pereira",
             email: "joao.pereira@madeira.gov.pt",
@@ -66,6 +70,7 @@ export const ticketsData: Ticket[] = [
     },
     {
         id: 4,
+        ticketId: "24387",
         requester: {
             name: "Ana Costa",
             email: "ana.costa@madeira.gov.pt",
@@ -82,6 +87,7 @@ export const ticketsData: Ticket[] = [
     },
     {
         id: 5,
+        ticketId: "24293",
         requester: {
             name: "Carlos Mendes",
             email: "carlos.mendes@madeira.gov.pt",
@@ -98,6 +104,7 @@ export const ticketsData: Ticket[] = [
     },
     {
         id: 6,
+        ticketId: "24501",
         requester: {
             name: "Luisa Fernandes",
             email: "luisa.fernandes@madeira.gov.pt",
@@ -114,6 +121,7 @@ export const ticketsData: Ticket[] = [
     },
     {
         id: 7,
+        ticketId: "24186",
         requester: {
             name: "Miguel Rodrigues",
             email: "miguel.rodrigues@madeira.gov.pt",
@@ -130,6 +138,7 @@ export const ticketsData: Ticket[] = [
     },
     {
         id: 8,
+        ticketId: "24365",
         requester: {
             name: "Sofia Almeida",
             email: "sofia.almeida@madeira.gov.pt",
@@ -146,6 +155,7 @@ export const ticketsData: Ticket[] = [
     },
     {
         id: 9,
+        ticketId: "24528",
         requester: {
             name: "Pedro Santos",
             email: "pedro.santos@madeira.gov.pt",
@@ -162,6 +172,7 @@ export const ticketsData: Ticket[] = [
     },
     {
         id: 10,
+        ticketId: "24447",
         requester: {
             name: "Rita Oliveira",
             email: "rita.oliveira@madeira.gov.pt",
@@ -178,6 +189,7 @@ export const ticketsData: Ticket[] = [
     },
     {
         id: 11,
+        ticketId: "24572",
         requester: {
             name: "Nuno Ferreira",
             email: "nuno.ferreira@madeira.gov.pt",

@@ -60,7 +60,7 @@ const translations = {
     tickets: {
         title: "Tickets",
         newTicket: "+ Nuevo ticket",
-        searchPlaceholder: "Buscar en todos los tickets...",
+        searchPlaceholder: "Buscar...",
         allTickets: "Todos los tickets",
         ticketsToHandle: "Tickets por manejar",
         myOpenTickets: "Mis tickets abiertos",
@@ -73,7 +73,8 @@ const translations = {
         open: "Abierto",
         closed: "Cerrado",
         awaitingStock: "Esperando Stock",
-        completed: "Completado"
+        completed: "Completado",
+        all: "Todos"
     },
     pedidos: {
         allTickets: "Todos los tickets",

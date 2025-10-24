@@ -1,18 +1,61 @@
 "use client"
-import { useState } from "react"
+import { useState, useMemo, useEffect } from "react"
 import Image from "next/image";
 import { ticketsData, getStatusStyling } from "@/data/ticketsData";
 import { useTheme } from "@/context/ThemeContext";
 
+interface PedidosProps {
+    selectedEstado: string;
+    searchTerm: string | null;
+}
 
-export default function Pedidos() {
+export default function Pedidos({ selectedEstado, searchTerm }: PedidosProps) {
     const { t } = useTheme();
     const [pagina, setPagina] = useState(1);
     const itemsPerPage = 7;
+    
+    // Filter tickets based on selected status and patID
+    const filteredTickets = useMemo(() => {
+        let filtered = ticketsData;
+        
+        // Filter by status
+        if (selectedEstado !== "all") {
+            filtered = filtered.filter(ticket => ticket.status.name === selectedEstado);
+        }
+        
+        // Filter by search term across all fields if provided
+        if (searchTerm && searchTerm.trim() !== "") {
+            const searchQuery = searchTerm.toLowerCase();
+            filtered = filtered.filter(ticket => 
+                // Search in ticket ID
+                ticket.ticketId.toLowerCase().includes(searchQuery) ||
+                // Search in subject
+                ticket.subject.toLowerCase().includes(searchQuery) ||
+                // Search in requester name
+                ticket.requester.name.toLowerCase().includes(searchQuery) ||
+                // Search in requester email
+                ticket.requester.email.toLowerCase().includes(searchQuery) ||
+                // Search in work location
+                ticket.workLocation.toLowerCase().includes(searchQuery) ||
+                // Search in status name
+                ticket.status.name.toLowerCase().includes(searchQuery) ||
+                // Search in last message
+                ticket.lastMessage.toLowerCase().includes(searchQuery)
+            );
+        }
+        
+        return filtered;
+    }, [selectedEstado, searchTerm]);
+    
     const startIndex = (pagina - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
-    const currentTickets = ticketsData.slice(startIndex, endIndex);
-    const totalPages = Math.ceil(ticketsData.length / itemsPerPage);
+    const currentTickets = filteredTickets.slice(startIndex, endIndex);
+    const totalPages = Math.ceil(filteredTickets.length / itemsPerPage);
+
+    // Reset to page 1 when filter changes
+    useEffect(() => {
+        setPagina(1);
+    }, [selectedEstado, searchTerm]);
 
     return (
         <>
@@ -26,7 +69,7 @@ export default function Pedidos() {
                 </div>
 
                 <div className="flex w-full h-9 bg-white dark:bg-gray-900 border-b-2 border-r-2 border-gray-200 dark:border-gray-600 items-center justify-between px-4">
-                    <span className="text-gray-600 dark:text-gray-300 text-sm">({ticketsData.length}) {t("pedidos.ticketsCount")}</span>
+                    <span className="text-gray-600 dark:text-gray-300 text-sm">({filteredTickets.length}) {t("pedidos.ticketsCount")}</span>
                     
                     <div className="flex items-center space-x-1">
                         <button 
@@ -59,6 +102,9 @@ export default function Pedidos() {
                     </div>
                 </div>
                 <div className="flex w-full h-12 bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-600 items-center px-4 gap-8">
+                    <div className="w-16 text-left">
+                        <span className="text-gray-700 dark:text-gray-200 text-sm font-semibold">PAT</span>
+                    </div>
                     <div className="flex-2 text-left">
                         <span className="text-gray-700 dark:text-gray-200 text-sm font-semibold">{t("pedidos.tableHeaders.requester")}</span>
                     </div>
@@ -86,6 +132,9 @@ export default function Pedidos() {
                                 index % 2 === 0 ? 'bg-white dark:bg-gray-900' : 'bg-slate-50 dark:bg-gray-800'
                             }`}
                         >
+                            <div className="w-16 text-left">
+                                <span className="text-gray-600 dark:text-gray-400 text-sm font-mono">#{ticket.ticketId}</span>
+                            </div>
                             <div className="flex-2 flex items-center">
                                 <Image
                                     src={ticket.requester.avatar}

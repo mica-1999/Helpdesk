@@ -61,7 +61,7 @@ const translations = {
     tickets: {
         title: "Tickets",
         newTicket: "+ New ticket",
-        searchPlaceholder: "Search in all tickets...",
+        searchPlaceholder: "Search...",
         allTickets: "All tickets",
         ticketsToHandle: "Tickets to handle",
         myOpenTickets: "My open tickets",
@@ -74,7 +74,8 @@ const translations = {
         open: "Open",
         closed: "Closed",
         awaitingStock: "Awaiting Stock",
-        completed: "Completed"
+        completed: "Completed",
+        all: "All"
     },
     pedidos: {
         allTickets: "All tickets",

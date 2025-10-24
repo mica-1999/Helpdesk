@@ -1,10 +1,17 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useTheme } from "@/context/ThemeContext";
+import { statusConfigs, getStatusStyling } from "@/data/searchData";
 
-export default function Search() {
+interface SearchProps {
+    selectedEstado: string;
+    setSelectedEstado: (estado: string) => void;
+    searchTerm: string | null;
+    setSearchTerm: (searchTerm: string | null) => void;
+}
+
+export default function Search({ selectedEstado, setSelectedEstado, searchTerm, setSearchTerm }: SearchProps) {
     const { t } = useTheme();
-    const [searchBox, setSearchBox] = useState("");
     const [placeholder, setPlaceholder] = useState("");
 
     useEffect(() => {
@@ -13,14 +20,14 @@ export default function Search() {
 
     // Handle search input
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchBox(e.target.value);
+        setSearchTerm(e.target.value || null);
     };
 
     const handleFocus = () => {
         setPlaceholder("");
     };
     const handleBlur = () => {
-        if (searchBox === "") {
+        if (!searchTerm || searchTerm.trim() === "") {
             setPlaceholder(t("tickets.searchPlaceholder"));
         }
     };
@@ -39,7 +46,7 @@ export default function Search() {
                             <input 
                                 type="text" 
                                 placeholder={placeholder} 
-                                value={searchBox}
+                                value={searchTerm || ""}
                                 onChange={handleSearchChange}
                                 onFocus={handleFocus}
                                 onBlur={handleBlur}
@@ -87,30 +94,26 @@ export default function Search() {
                             <i className="ri-information-line text-[#666cff] dark:text-[#a855f7] text-lg hover:text-[#5a5fe6] dark:hover:text-[#9333ea] cursor-pointer transition-colors duration-200"></i>
                          </div>
                          
-                         <div className="h-9 mt-3 px-4 flex justify-between items-center hover:bg-gray-300 dark:hover:bg-gray-700 cursor-pointer transition-colors duration-200">
-                            <h5 className="text-black dark:text-gray-100 text-[15px] font-sans tracking-wide">{t("tickets.pending")}</h5>
-                            <span className="bg-red-200 dark:bg-red-800 text-red-800 dark:text-red-100 px-2 py-1 rounded-full text-sm font-semibold text-center">5</span>
-                         </div>
-                         
-                         <div className="h-9 px-4 flex justify-between items-center hover:bg-gray-300 dark:hover:bg-gray-700 cursor-pointer transition-colors duration-200">
-                            <h5 className="text-black dark:text-gray-100 text-[15px] font-sans tracking-wide">{t("tickets.open")}</h5>
-                            <span className="bg-blue-200 dark:bg-blue-800 text-blue-800 dark:text-blue-100 px-2 py-1 rounded-full text-sm font-semibold text-center">8</span>
-                         </div>
-                         
-                         <div className="h-9 px-4 flex justify-between items-center hover:bg-gray-300 dark:hover:bg-gray-700 cursor-pointer transition-colors duration-200">
-                            <h5 className="text-black dark:text-gray-100 text-[15px] font-sans tracking-wide">{t("tickets.closed")}</h5>
-                            <span className="bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-gray-100 px-2 py-1 rounded-full text-sm font-semibold text-center">42</span>
-                         </div>
-                         
-                         <div className="h-9 px-4 flex justify-between items-center hover:bg-gray-300 dark:hover:bg-gray-700 cursor-pointer transition-colors duration-200">
-                            <h5 className="text-black dark:text-gray-100 text-[15px] font-sans tracking-wide">{t("tickets.awaitingStock")}</h5>
-                            <span className="bg-yellow-200 dark:bg-yellow-800 text-yellow-800 dark:text-yellow-100 px-2 py-1 rounded-full text-sm font-semibold text-center">2</span>
-                         </div>
-                         
-                         <div className="h-9 px-4 flex justify-between items-center hover:bg-gray-300 dark:hover:bg-gray-700 cursor-pointer transition-colors duration-200">
-                            <h5 className="text-black dark:text-gray-100 text-[15px] font-sans tracking-wide">{t("tickets.completed")}</h5>
-                            <span className="bg-green-200 dark:bg-green-800 text-green-800 dark:text-green-100 px-2 py-1 rounded-full text-sm font-semibold text-center">156</span>
-                         </div>
+                         {/* Status Options */}
+                         {statusConfigs.map((statusConfig, index) => {
+                            const isSelected = selectedEstado === statusConfig.key;
+                            const styling = getStatusStyling(statusConfig, isSelected);
+                            
+                            return (
+                                <div 
+                                    key={statusConfig.key}
+                                    onClick={() => setSelectedEstado(statusConfig.key)}
+                                    className={`${styling.containerClass} ${index === 0 ? 'mt-3' : ''}`}
+                                >
+                                    <h5 className={styling.textClass}>
+                                        {t(statusConfig.translationKey)}
+                                    </h5>
+                                    <span className={styling.badgeClass}>
+                                        {statusConfig.count}
+                                    </span>
+                                </div>
+                            );
+                         })}
 
                     </div>
                 </div>
