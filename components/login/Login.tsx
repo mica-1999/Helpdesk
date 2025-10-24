@@ -11,7 +11,7 @@ import Link from 'next/link';
 export default function Login() {
     // Router instance to navigate between pages
     const router = useRouter();
- 
+  
     // State & Hooks
     const { t, savedTheme } = useTheme();
     const [form, setForm] = useState({ username: '', password: '', rememberMe: false, });
