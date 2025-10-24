@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 export default function Sidebar() {
     return (
         <>  
@@ -30,9 +32,9 @@ export default function Sidebar() {
                         <i className="ri-settings-3-line text-white text-lg"></i>
                         <span className="text-white text-sm">Settings</span>
                     </div>
-                    <div className="w-full h-14 bg-teal-600 flex items-center justify-center hover:bg-teal-500 transition-colors duration-200 cursor-pointer">
+                    <Link href="/" className="w-full h-14 bg-teal-600 flex items-center justify-center hover:bg-teal-500 transition-colors duration-200 cursor-pointer">
                         <i className="ri-logout-box-line text-white text-lg"></i>
-                    </div>
+                    </Link>
                 </div>
             </div>
         </>
