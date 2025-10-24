@@ -20,7 +20,15 @@
         "**/eslint.config.mjs": true,
         "*.mjs": true,
         "eslint.config.mjs": true,
-        "**/*.mjs": true
+        "**/*.mjs": true,
+        "**/package.json": true,
+        "*.json": true,
+        "package.json": true,
+        "**/*.json": true,
+        "**/README.md": true,
+        "*.md": true,
+        "README.md": true,
+        "**/*.md": true
     },
     "explorerExclude.backup": {}
 }

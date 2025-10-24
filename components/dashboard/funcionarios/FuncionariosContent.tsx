@@ -41,7 +41,7 @@ export default function FuncionariosContent({ selectedEstado, searchTerm }: Pedi
         <>
             <div className="w-full h-full bg-white dark:bg-gray-900 flex flex-col">
                 <div className="flex w-full h-16 bg-white dark:bg-gray-900 border-b-2 border-r-2 border-gray-200 dark:border-gray-600 items-center justify-center shrink-0">
-                    <h2 className="text-gray-700 dark:text-gray-200 text-xl font-bold font-sans tracking-wide">All Employees</h2>
+                    <h2 className="text-gray-700 dark:text-gray-200 text-xl font-bold font-sans tracking-wide">{t("funcionarios.allEmployees")}</h2>
                 </div>
 
                 <div className="flex w-full h-16 bg-white dark:bg-gray-900 border-b-2 border-r-2 border-gray-200 dark:border-gray-600 items-center justify-between px-4 shrink-0">

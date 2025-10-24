@@ -90,6 +90,7 @@ const translations = {
     },
     funcionarios: {
         title: "Funcionários",
+        allEmployees: "Todos os Funcionários",
         all: "Todos",
         active: "Ativo",
         inactive: "Inativo",
