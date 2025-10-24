@@ -16,22 +16,22 @@ export default function Pedidos() {
 
     return (
         <>
-            <div className="w-full h-full bg-white">
-                <div className="flex w-full h-16 bg-white border-b-2 border-r-2 border-gray-200 items-center justify-center">
-                    <h2 className="text-gray-700 dark:text-gray-500 text-xl font-bold font-sans tracking-wide">{t("pedidos.allTickets")}</h2>
+            <div className="w-full h-full bg-white dark:bg-gray-900">
+                <div className="flex w-full h-16 bg-white dark:bg-gray-900 border-b-2 border-r-2 border-gray-200 dark:border-gray-600 items-center justify-center">
+                    <h2 className="text-gray-700 dark:text-gray-200 text-xl font-bold font-sans tracking-wide">{t("pedidos.allTickets")}</h2>
                 </div>
 
-                <div className="flex w-full h-16 bg-white border-b-2 border-r-2 border-gray-200 items-center justify-between px-4">
-                    <button className="w-32 text-[#666cff] bg-white hover:bg-blue-100 px-4 py-2 rounded-md cursor-pointer transition-colors duration-200 text-sm font-semibold border border-[#666cff]">{t("pedidos.addFilter")}</button>
+                <div className="flex w-full h-16 bg-white dark:bg-gray-900 border-b-2 border-r-2 border-gray-200 dark:border-gray-600 items-center justify-between px-4">
+                    <button className="w-38 text-[#666cff] dark:text-[#a855f7] bg-white dark:bg-gray-800 hover:bg-blue-100 dark:hover:bg-gray-700 px-4 py-2 rounded-md cursor-pointer transition-colors duration-200 text-sm font-semibold border border-[#666cff] dark:border-[#a855f7]">{t("pedidos.addFilter")}</button>
                 </div>
 
-                <div className="flex w-full h-9 bg-white border-b-2 border-r-2 border-gray-200 items-center justify-between px-4">
-                    <span className="text-gray-600 text-sm">({ticketsData.length}) {t("pedidos.ticketsCount")}</span>
+                <div className="flex w-full h-9 bg-white dark:bg-gray-900 border-b-2 border-r-2 border-gray-200 dark:border-gray-600 items-center justify-between px-4">
+                    <span className="text-gray-600 dark:text-gray-300 text-sm">({ticketsData.length}) {t("pedidos.ticketsCount")}</span>
                     
                     <div className="flex items-center space-x-1">
                         <button 
                             onClick={() => setPagina(Math.max(1, pagina - 1))}
-                            className="w-6 h-6 flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded transition-colors duration-200"
+                            className="w-6 h-6 flex items-center justify-center text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors duration-200"
                         >
                             <i className="ri-arrow-left-s-line text-sm"></i>
                         </button>
@@ -42,8 +42,8 @@ export default function Pedidos() {
                                 onClick={() => setPagina(pageNum)}
                                 className={`w-6 h-6 flex items-center justify-center rounded transition-colors duration-200 text-xs ${
                                     pagina === pageNum
-                                        ? 'text-white bg-[#666cff] hover:bg-[#5a5fe6] font-semibold'
-                                        : 'text-gray-600 hover:text-gray-800 hover:bg-gray-100'
+                                        ? 'text-white bg-[#666cff] dark:bg-[#7c3aed] hover:bg-[#5a5fe6] dark:hover:bg-[#6d28d9] font-semibold'
+                                        : 'text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700'
                                 }`}
                             >
                                 {pageNum}
@@ -52,38 +52,38 @@ export default function Pedidos() {
                         
                         <button 
                             onClick={() => setPagina(Math.min(totalPages, pagina + 1))}
-                            className="w-6 h-6 flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded transition-colors duration-200"
+                            className="w-6 h-6 flex items-center justify-center text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors duration-200"
                         >
                             <i className="ri-arrow-right-s-line text-sm"></i>
                         </button>
                     </div>
                 </div>
-                <div className="flex w-full h-12 bg-gray-50 border-b border-gray-200 items-center px-4 gap-8">
+                <div className="flex w-full h-12 bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-600 items-center px-4 gap-8">
                     <div className="flex-2 text-left">
-                        <span className="text-gray-700 text-sm font-semibold">{t("pedidos.tableHeaders.requester")}</span>
+                        <span className="text-gray-700 dark:text-gray-200 text-sm font-semibold">{t("pedidos.tableHeaders.requester")}</span>
                     </div>
                     <div className="flex-2 text-left">
-                        <span className="text-gray-700 text-sm font-semibold">{t("pedidos.tableHeaders.subject")}</span>
+                        <span className="text-gray-700 dark:text-gray-200 text-sm font-semibold">{t("pedidos.tableHeaders.subject")}</span>
                     </div>
                     <div className="flex-1 text-left">
-                        <span className="text-gray-700 text-sm font-semibold">{t("pedidos.tableHeaders.workLocation")}</span>
+                        <span className="text-gray-700 dark:text-gray-200 text-sm font-semibold">{t("pedidos.tableHeaders.workLocation")}</span>
                     </div>
                     <div className="w-32 text-center">
-                        <span className="text-gray-700 text-sm font-semibold">{t("pedidos.tableHeaders.status")}</span>
+                        <span className="text-gray-700 dark:text-gray-200 text-sm font-semibold">{t("pedidos.tableHeaders.status")}</span>
                     </div>
                     <div className="flex-1 text-left">
-                        <span className="text-gray-700 text-sm font-semibold">{t("pedidos.tableHeaders.lastUpdated")}</span>
+                        <span className="text-gray-700 dark:text-gray-200 text-sm font-semibold">{t("pedidos.tableHeaders.lastUpdated")}</span>
                     </div>
                     <div className="w-12 text-center">
-                        <span className="text-gray-700 text-sm font-semibold"></span>
+                        <span className="text-gray-700 dark:text-gray-200 text-sm font-semibold"></span>
                     </div>
                 </div>
-                <div className="flex-1 w-full overflow-y-auto">
+                <div className="flex-1 w-full overflow-y-auto bg-white dark:bg-gray-900">
                     {currentTickets.map((ticket, index) => (
                         <div 
                             key={ticket.id} 
-                            className={`flex w-full h-17 border-b border-gray-100 items-center px-4 gap-8 hover:bg-blue-50 transition-colors duration-200 cursor-pointer ${
-                                index % 2 === 0 ? 'bg-white' : 'bg-slate-50'
+                            className={`flex w-full h-17 border-b border-gray-100 dark:border-gray-700 items-center px-4 gap-8 hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors duration-200 cursor-pointer ${
+                                index % 2 === 0 ? 'bg-white dark:bg-gray-900' : 'bg-slate-50 dark:bg-gray-800'
                             }`}
                         >
                             <div className="flex-2 flex items-center">
@@ -97,15 +97,15 @@ export default function Pedidos() {
                                     unoptimized={true}
                                 />
                                 <div className="flex flex-col">
-                                    <span className="text-gray-800 text-sm font-medium">{ticket.requester.name}</span>
-                                    <span className="text-gray-500 text-xs">{ticket.requester.email}</span>
+                                    <span className="text-gray-800 dark:text-gray-100 text-sm font-medium">{ticket.requester.name}</span>
+                                    <span className="text-gray-500 dark:text-gray-400 text-xs">{ticket.requester.email}</span>
                                 </div>
                             </div>
                             <div className="flex-2 text-left">
-                                <span className="text-gray-800 text-sm">{ticket.subject}</span>
+                                <span className="text-gray-800 dark:text-gray-100 text-sm">{ticket.subject}</span>
                             </div>
                             <div className="flex-1 text-left">
-                                <span className="text-gray-600 text-sm">{ticket.workLocation}</span>
+                                <span className="text-gray-600 dark:text-gray-300 text-sm">{ticket.workLocation}</span>
                             </div>
                             <div className="w-32 text-center">
                                 <span className={`${getStatusStyling(ticket.status.color)} px-2 py-1 rounded-full text-xs font-semibold`}>
@@ -113,10 +113,10 @@ export default function Pedidos() {
                                 </span>
                             </div>
                             <div className="flex-1 text-left">
-                                <span className="text-gray-600 text-sm">{ticket.lastMessage}</span>
+                                <span className="text-gray-600 dark:text-gray-300 text-sm">{ticket.lastMessage}</span>
                             </div>
                             <div className="w-12 flex justify-center">
-                                <button className="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-gray-700 hover:bg-gray-200 transition-colors duration-200 rounded-full cursor-pointer">
+                                <button className="w-8 h-8 flex items-center justify-center text-gray-400 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200 rounded-full cursor-pointer">
                                     <i className="ri-more-fill text-lg"></i>
                                 </button>
                             </div>
