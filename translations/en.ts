@@ -14,7 +14,15 @@ const translations = {
         emptyFields: "Please fill in all fields",
         invalidCredentials: "Invalid username or password",
         success: "Login successful!",
-        error: "An error occurred during login"
+        error: "An error occurred during login",
+        rightSide: {
+            title: "Streamline Your Support Experience",
+            subtitle: "Powerful tools to manage tickets, track progress, and deliver exceptional customer service.",
+            feature1: "24/7 Support",
+            feature2: "Secure Platform", 
+            feature3: "Team Collaboration",
+            feature4: "Analytics & Reports"
+        }
     },
     themeSettings: {
         title: "Settings",

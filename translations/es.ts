@@ -14,7 +14,15 @@ const translations = {
         emptyFields: "Por favor complete todos los campos",
         invalidCredentials: "Nombre de usuario o contraseña inválidos",
         success: "¡Inicio de sesión exitoso!",
-        error: "Ocurrió un error durante el inicio de sesión"
+        error: "Ocurrió un error durante el inicio de sesión",
+        rightSide: {
+            title: "Optimiza Tu Experiencia de Soporte",
+            subtitle: "Herramientas poderosas para gestionar tickets, seguir el progreso y brindar un servicio al cliente excepcional.",
+            feature1: "Soporte 24/7",
+            feature2: "Plataforma Segura",
+            feature3: "Colaboración en Equipo",
+            feature4: "Análisis e Informes"
+        }
     },
     themeSettings: {
         title: "Configuración",

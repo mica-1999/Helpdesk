@@ -14,7 +14,15 @@ const translations = {
         emptyFields: "Por favor preencha todos os campos",
         invalidCredentials: "Nome de utilizador ou palavra-passe inválidos",
         success: "Login realizado com sucesso!",
-        error: "Ocorreu um erro durante o login"
+        error: "Ocorreu um erro durante o login",
+        rightSide: {
+            title: "Simplifique a Sua Experiência de Suporte",
+            subtitle: "Ferramentas poderosas para gerir pedidos, acompanhar progresso e oferecer um atendimento ao cliente excecional.",
+            feature1: "Suporte 24/7",
+            feature2: "Plataforma Segura",
+            feature3: "Colaboração em Equipa", 
+            feature4: "Análises e Relatórios"
+        }
     },
     themeSettings: {
         title: "Configurações",

@@ -5,7 +5,6 @@ import { loginProviders } from '@/data/loginData';
 import { showToast } from '@/components/reusable/Toasters';
 import { useRouter } from 'next/navigation';
 import { signIn } from 'next-auth/react';
-import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Login() {
@@ -35,6 +34,16 @@ export default function Login() {
         }
 
         try {
+            // Check for hardcoded admin credentials first (bypass database)
+            if (username === 'admin' && password === 'helpdesk123') {
+                await new Promise(resolve => setTimeout(resolve, 1500));
+                showToast('success', t('login.success'), savedTheme);
+                resetFields();
+                setIsLoading(false);
+                router.push('/frontpage');
+                return;
+            }
+
             // Call the signIn function from next-auth with credentials
             // Add a 2-second timeout before signing in
             await new Promise(resolve => setTimeout(resolve, 1500));
@@ -52,7 +61,7 @@ export default function Login() {
                 showToast('success', t('login.success'), savedTheme);
                 resetFields();
                 setIsLoading(false);
-                router.push('/pages/dashboard');
+                router.push('/frontpage');
             }
 
         } catch (error) {
@@ -170,7 +179,7 @@ export default function Login() {
                                     {loginProviders.map((provider) => (
                                         <button
                                             key={provider.id}
-                                            className={`w-[70px] h-[50px] text-gray-300 ${provider.color} ${provider.textColor}  flex items-center justify-center bg-white border border-gray-300 text-gray-700 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-md dark:bg-gray-800 dark:border-gray-600  focus:outline-none focus:ring-2 focus:ring-[#FF6B35] focus:ring-opacity-50 dark:focus:ring-[#666cff] cursor-pointer`}
+                                            className={`w-[70px] h-[50px] ${provider.hoverBase} ${provider.color} ${provider.textColorBase} dark:${provider.textColor}  flex items-center justify-center bg-white border border-gray-300 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-md dark:bg-gray-800 dark:border-gray-600  focus:outline-none focus:ring-2 focus:ring-[#FF6B35] focus:ring-opacity-50 dark:focus:ring-[#666cff] cursor-pointer`}
                                         >
                                             <i className={`${provider.icon} mr-1`}></i>
                                         </button>
@@ -182,14 +191,59 @@ export default function Login() {
                 </div>
 
                 <div id="rightSide" className='hidden xl:flex xl:w-[50%] h-full relative overflow-hidden'>
-                    <div className="relative w-full h-full">
-                        <Image
-                            src="/login/maybe.jpg"
-                            alt=""
-                            fill
-                            sizes="50vw"
-                            priority
-                        />
+                    {/* Modern gradient design with animated elements */}
+                    <div className="relative w-full h-full bg-linear-to-br from-[#FF6B35] via-[#FF8C5A] to-[#FFA366] dark:from-[#666cff] dark:via-[#7c7cff] dark:to-[#9999ff] flex items-center justify-center">
+                        
+                        {/* Animated background shapes */}
+                        <div className="absolute inset-0 overflow-hidden">
+                            <div className="absolute -top-20 -right-20 w-80 h-80 bg-white/10 rounded-full animate-pulse"></div>
+                            <div className="absolute top-1/4 -left-16 w-60 h-60 bg-white/10 rounded-full animate-bounce [animation-duration:3s]"></div>
+                            <div className="absolute bottom-20 right-1/4 w-40 h-40 bg-white/10 rounded-full animate-pulse [animation-delay:1s]"></div>
+                        </div>
+
+                        {/* Main content */}
+                        <div className="relative z-10 text-center text-white px-8 max-w-md">
+                            <div className="mb-8">
+                                <i className="ri-customer-service-2-line text-8xl mb-6 opacity-90"></i>
+                            </div>
+                            
+                            <h2 className="text-3xl font-bold mb-4 leading-tight">
+                                {t('login.rightSide.title')}
+                            </h2>
+                            
+                            <p className="text-lg opacity-90 mb-8 leading-relaxed">
+                                {t('login.rightSide.subtitle')}
+                            </p>
+                            
+                            <div className="grid grid-cols-2 gap-4 text-sm">
+                                <div className="bg-white/15 backdrop-blur-sm rounded-lg p-4">
+                                    <i className="ri-time-line text-2xl mb-2"></i>
+                                    <p className="font-medium">{t('login.rightSide.feature1')}</p>
+                                </div>
+                                <div className="bg-white/15 backdrop-blur-sm rounded-lg p-4">
+                                    <i className="ri-shield-check-line text-2xl mb-2"></i>
+                                    <p className="font-medium">{t('login.rightSide.feature2')}</p>
+                                </div>
+                                <div className="bg-white/15 backdrop-blur-sm rounded-lg p-4">
+                                    <i className="ri-team-line text-2xl mb-2"></i>
+                                    <p className="font-medium">{t('login.rightSide.feature3')}</p>
+                                </div>
+                                <div className="bg-white/15 backdrop-blur-sm rounded-lg p-4">
+                                    <i className="ri-bar-chart-line text-2xl mb-2"></i>
+                                    <p className="font-medium">{t('login.rightSide.feature4')}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Subtle grid pattern overlay */}
+                        <div className="absolute inset-0 opacity-10">
+                            <div className="w-full h-full" style={{
+                                backgroundImage: `
+                                    radial-gradient(circle at 1px 1px, white 1px, transparent 0)
+                                `,
+                                backgroundSize: '30px 30px'
+                            }}></div>
+                        </div>
                     </div>
                 </div>
             </div>

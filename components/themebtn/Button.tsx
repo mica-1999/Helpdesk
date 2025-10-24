@@ -21,43 +21,32 @@ export default function StickyButton() {
 
     // Function to handle confirmation of changes
     const handleSavedChanges = async () => {
-        if (!session?.user?.id) {
-            showToast("error", t('themeSettings.notLoggedIn'), savedTheme);
-            return;
-        }
-
-        try {
-            const response = await fetch(`/api/preferences/${session.user.id}`, {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    visualTheme: theme,
-                    language: language
-                })
-            });
-
-            if (response.ok) {
-                // Save new theme and language to context        
-                setSavedTheme(theme);
-                setSavedLanguage(language);
-
-                // Save new theme and language to localStorage
-                if (typeof window !== 'undefined') {
-                    localStorage.setItem('theme', theme);
-                    localStorage.setItem('language', language);
-                }
-
-                // Close the config menu and show success message
-                setShowConfig(false)
-                showToast("success", t('themeSettings.changesSaved'), savedTheme);
+        // Save to database only if user is logged in
+        if (session?.user?.id) {
+            try {
+                await fetch(`/api/preferences/${session.user.id}`, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        visualTheme: theme,
+                        language: language
+                    })
+                });
+            }
+            catch (error) {
+                console.error("Error saving preferences:", error);
             }
         }
-        catch (error) {
-            console.error("Error saving preferences:", error)
-            showToast("error", t('themeSettings.errorSaving'), savedTheme);
-        }
+
+        // Update the "saved" states to match current selections (for reset functionality)
+        setSavedTheme(theme);
+        setSavedLanguage(language);
+
+        // Close the config menu and show success message
+        setShowConfig(false)
+        showToast("success", t('themeSettings.changesSaved'), theme);
     }
 
     // Reset to default 

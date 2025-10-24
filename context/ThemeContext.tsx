@@ -1,4 +1,3 @@
-// REVIEWED: 2025-05-05 - Good to go ✅
 "use client"
 import { createContext, useContext, useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
@@ -69,8 +68,10 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     useEffect(() => {
         if (theme === "Dark") {
             document.documentElement.classList.add('dark');
+            localStorage.setItem('theme', 'Dark');
         } else if (theme === "Light") {
             document.documentElement.classList.remove('dark');
+            localStorage.setItem('theme', 'Light');
         } else if (theme === "Auto") {
             // Check system preference
             const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -89,11 +90,19 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
                     document.documentElement.classList.remove('dark');
                 }
             };
-
+            localStorage.setItem('theme', 'Auto');
             mediaQuery.addEventListener('change', handleChange);
             return () => mediaQuery.removeEventListener('change', handleChange);
+            
         }
     }, [theme]);
+
+    // Save language to localStorage when it changes
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            localStorage.setItem('language', language);
+        }
+    }, [language]);
 
     // Add a useEffect to control loading state
     useEffect(() => {
@@ -103,6 +112,11 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     // Translation function
     // This function takes a key and returns the corresponding translation
     const t = (key: string): string => {
+        // During loading/hydration, return empty string to prevent mismatch
+        if (isLoading) {
+            return '';
+        }
+        
         // Get translations for current language
         const translations = getTranslations(language) as Translations;
 
@@ -129,6 +143,11 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
     // Translation function for arrays
     const tArray = <T,>(key: string): T[] => {
+        // During loading/hydration, return empty array to prevent mismatch
+        if (isLoading) {
+            return [];
+        }
+        
         const translations = getTranslations(language) as Translations;
         const keys = key.split('.');
         let result: string | NestedTranslations | Array<unknown> = translations;
