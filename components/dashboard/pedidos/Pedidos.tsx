@@ -128,7 +128,7 @@ export default function Pedidos({ selectedEstado, searchTerm }: PedidosProps) {
                     {currentTickets.map((ticket, index) => (
                         <div 
                             key={ticket.id} 
-                            className={`flex w-full h-17 border-b border-gray-100 dark:border-gray-700 items-center px-4 gap-8 hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors duration-200 cursor-pointer ${
+                            className={`flex w-full h-17 border-b border-gray-100 dark:border-gray-700 items-center px-4 gap-8 hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors duration-200${
                                 index % 2 === 0 ? 'bg-white dark:bg-gray-900' : 'bg-slate-50 dark:bg-gray-800'
                             }`}
                         >
