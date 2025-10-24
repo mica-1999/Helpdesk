@@ -48,6 +48,15 @@ const translations = {
             portuguese: "Portugués",
             spanish: "Español"
         }
+    },
+    dashboardFooter: {
+        madeWith: "hecho con",
+        by: "por",
+        license: "Licencia",
+        themes: "Temas",
+        documentation: "Documentación",
+        support: "Soporte"
     }
+    
 }
 export default translations;
