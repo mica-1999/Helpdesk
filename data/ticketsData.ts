@@ -23,13 +23,13 @@ export const ticketsData: Ticket[] = [
             email: "david.silva@madeira.gov.pt",
             avatar: "/others/avatar.png"
         },
-        subject: "Printer Configuration Issues",
+        subject: "Problemas de Configuração da Impressora",
         workLocation: "SREI",
         status: {
-            name: "Pending",
+            name: "Pendente",
             color: "red"
         },
-        lastMessage: "2 hours ago",
+        lastMessage: "há 2 horas",
         createdAt: new Date("2024-10-24T08:30:00")
     },
     {
@@ -39,13 +39,13 @@ export const ticketsData: Ticket[] = [
             email: "maria.santos@madeira.gov.pt",
             avatar: "/others/avatar.png"
         },
-        subject: "Network Connection Problems",
+        subject: "Problemas de Ligação à Rede",
         workLocation: "SRE",
         status: {
-            name: "Open",
+            name: "Aberto",
             color: "blue"
         },
-        lastMessage: "1 hour ago",
+        lastMessage: "há 1 hora",
         createdAt: new Date("2024-10-24T09:15:00")
     },
     {
@@ -55,13 +55,13 @@ export const ticketsData: Ticket[] = [
             email: "joao.pereira@madeira.gov.pt",
             avatar: "/others/avatar.png"
         },
-        subject: "Software Installation Request",
+        subject: "Pedido de Instalação de Software",
         workLocation: "SRAP",
         status: {
-            name: "Awaiting Stock",
+            name: "Aguarda Stock",
             color: "yellow"
         },
-        lastMessage: "3 hours ago",
+        lastMessage: "há 3 horas",
         createdAt: new Date("2024-10-24T07:45:00")
     },
     {
@@ -71,13 +71,13 @@ export const ticketsData: Ticket[] = [
             email: "ana.costa@madeira.gov.pt",
             avatar: "/others/avatar.png"
         },
-        subject: "Email Configuration Help",
+        subject: "Ajuda com Configuração de Email",
         workLocation: "DRE",
         status: {
-            name: "Completed",
+            name: "Concluído",
             color: "green"
         },
-        lastMessage: "Yesterday",
+        lastMessage: "Ontem",
         createdAt: new Date("2024-10-23T14:20:00")
     },
     {
@@ -87,13 +87,13 @@ export const ticketsData: Ticket[] = [
             email: "carlos.mendes@madeira.gov.pt",
             avatar: "/others/avatar.png"
         },
-        subject: "Computer Hardware Replacement",
+        subject: "Substituição de Hardware do Computador",
         workLocation: "SREI",
         status: {
-            name: "Closed",
+            name: "Fechado",
             color: "gray"
         },
-        lastMessage: "2 days ago",
+        lastMessage: "há 2 dias",
         createdAt: new Date("2024-10-22T16:30:00")
     },
     {
@@ -103,13 +103,13 @@ export const ticketsData: Ticket[] = [
             email: "luisa.fernandes@madeira.gov.pt",
             avatar: "/others/avatar.png"
         },
-        subject: "Access Permission Request",
+        subject: "Pedido de Permissão de Acesso",
         workLocation: "SRE",
         status: {
-            name: "Open",
+            name: "Aberto",
             color: "blue"
         },
-        lastMessage: "30 minutes ago",
+        lastMessage: "há 30 minutos",
         createdAt: new Date("2024-10-24T10:30:00")
     },
     {
@@ -119,13 +119,13 @@ export const ticketsData: Ticket[] = [
             email: "miguel.rodrigues@madeira.gov.pt",
             avatar: "/others/avatar.png"
         },
-        subject: "Database Connection Error",
+        subject: "Erro de Ligação à Base de Dados",
         workLocation: "DRE",
         status: {
-            name: "Pending",
+            name: "Pendente",
             color: "red"
         },
-        lastMessage: "4 hours ago",
+        lastMessage: "há 4 horas",
         createdAt: new Date("2024-10-24T06:15:00")
     },
     {
@@ -135,13 +135,13 @@ export const ticketsData: Ticket[] = [
             email: "sofia.almeida@madeira.gov.pt",
             avatar: "/others/avatar.png"
         },
-        subject: "VPN Connection Setup",
+        subject: "Configuração de Ligação VPN",
         workLocation: "SRAP",
         status: {
-            name: "Completed",
+            name: "Concluído",
             color: "green"
         },
-        lastMessage: "1 day ago",
+        lastMessage: "há 1 dia",
         createdAt: new Date("2024-10-23T11:45:00")
     },
     {
@@ -151,13 +151,13 @@ export const ticketsData: Ticket[] = [
             email: "pedro.santos@madeira.gov.pt",
             avatar: "/others/avatar.png"
         },
-        subject: "Monitor Replacement Request",
+        subject: "Pedido de Substituição de Monitor",
         workLocation: "DRE",
         status: {
-            name: "Open",
+            name: "Aberto",
             color: "blue"
         },
-        lastMessage: "45 minutes ago",
+        lastMessage: "há 45 minutos",
         createdAt: new Date("2024-10-24T09:45:00")
     },
     {
@@ -167,13 +167,13 @@ export const ticketsData: Ticket[] = [
             email: "rita.oliveira@madeira.gov.pt",
             avatar: "/others/avatar.png"
         },
-        subject: "Software License Renewal",
+        subject: "Renovação de Licença de Software",
         workLocation: "SRAP",
         status: {
-            name: "Awaiting Stock",
+            name: "Aguarda Stock",
             color: "yellow"
         },
-        lastMessage: "5 hours ago",
+        lastMessage: "há 5 horas",
         createdAt: new Date("2024-10-24T05:30:00")
     },
     {
@@ -183,13 +183,13 @@ export const ticketsData: Ticket[] = [
             email: "nuno.ferreira@madeira.gov.pt",
             avatar: "/others/avatar.png"
         },
-        subject: "System Access Issues",
+        subject: "Problemas de Acesso ao Sistema",
         workLocation: "SRE",
         status: {
-            name: "Pending",
+            name: "Pendente",
             color: "red"
         },
-        lastMessage: "1 hour ago",
+        lastMessage: "há 1 hora",
         createdAt: new Date("2024-10-24T09:00:00")
     }
 ];
