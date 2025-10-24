@@ -56,6 +56,36 @@ const translations = {
         themes: "Temas",
         documentation: "Documentación",
         support: "Soporte"
+    },
+    tickets: {
+        title: "Tickets",
+        newTicket: "+ Nuevo ticket",
+        searchPlaceholder: "Buscar en todos los tickets...",
+        allTickets: "Todos los tickets",
+        ticketsToHandle: "Tickets por manejar",
+        myOpenTickets: "Mis tickets abiertos",
+        myViews: "Mis vistas",
+        manage: "Gestionar",
+        myTicketsLast7Days: "Mis tickets últimos 7 días",
+        openTickets: "Tickets abiertos",
+        statuses: "Estados",
+        pending: "Pendiente",
+        open: "Abierto",
+        closed: "Cerrado",
+        awaitingStock: "Esperando Stock",
+        completed: "Completado"
+    },
+    pedidos: {
+        allTickets: "Todos los tickets",
+        addFilter: "+ Agregar filtro",
+        ticketsCount: "tickets",
+        tableHeaders: {
+            requester: "Solicitante",
+            subject: "Asunto",
+            workLocation: "Ubicación de Trabajo",
+            status: "Estado",
+            lastUpdated: "Última Actualización"
+        }
     }
     
 }

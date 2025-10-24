@@ -56,6 +56,36 @@ const translations = {
         themes: "Temas",
         documentation: "Documentação",
         support: "Suporte"
+    },
+    tickets: {
+        title: "Pedidos",
+        newTicket: "+ Novo pedido",
+        searchPlaceholder: "Pesquisar em todos os pedidos...",
+        allTickets: "Todos os pedidos",
+        ticketsToHandle: "Pedidos para tratar",
+        myOpenTickets: "Os meus pedidos abertos",
+        myViews: "As minhas visualizações",
+        manage: "Gerir",
+        myTicketsLast7Days: "Os meus pedidos últimos 7 dias",
+        openTickets: "Pedidos abertos",
+        statuses: "Estados",
+        pending: "Pendente",
+        open: "Aberto",
+        closed: "Fechado",
+        awaitingStock: "Aguarda Stock",
+        completed: "Concluído"
+    },
+    pedidos: {
+        allTickets: "Todos os pedidos",
+        addFilter: "+ Adicionar filtro",
+        ticketsCount: "pedidos",
+        tableHeaders: {
+            requester: "Requerente",
+            subject: "Assunto",
+            workLocation: "Local de Trabalho",
+            status: "Estado",
+            lastUpdated: "Última Atualização"
+        }
     }
 }
 export default translations;

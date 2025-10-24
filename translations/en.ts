@@ -57,6 +57,36 @@ const translations = {
         themes: "Themes",
         documentation: "Documentation",
         support: "Support"
+    },
+    tickets: {
+        title: "Tickets",
+        newTicket: "+ New ticket",
+        searchPlaceholder: "Search in all tickets...",
+        allTickets: "All tickets",
+        ticketsToHandle: "Tickets to handle",
+        myOpenTickets: "My open tickets",
+        myViews: "My views",
+        manage: "Manage",
+        myTicketsLast7Days: "My tickets last 7 days",
+        openTickets: "Open tickets",
+        statuses: "Statuses",
+        pending: "Pending",
+        open: "Open",
+        closed: "Closed",
+        awaitingStock: "Awaiting Stock",
+        completed: "Completed"
+    },
+    pedidos: {
+        allTickets: "All tickets",
+        addFilter: "+ Add filter",
+        ticketsCount: "tickets",
+        tableHeaders: {
+            requester: "Requester",
+            subject: "Subject",
+            workLocation: "Work Location",
+            status: "Status",
+            lastUpdated: "Last Updated"
+        }
     }
 }
 export default translations;
