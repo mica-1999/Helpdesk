@@ -87,7 +87,22 @@ const translations = {
             status: "Estado",
             lastUpdated: "Última Actualización"
         }
+    },
+    funcionarios: {
+        title: "Empleados",
+        all: "Todos",
+        active: "Activo",
+        inactive: "Inactivo",
+        intern: "Becario",
+        vacation: "De Vacaciones",
+        searchPlaceholder: "Buscar..."
+    },
+    departments: {
+        srei: "SREI - Sistemas y Redes",
+        sre: "SRE - Educación",
+        srap: "SRAP - Administración",
+        dre: "DRE - Educación Regional"
     }
-    
 }
+
 export default translations;

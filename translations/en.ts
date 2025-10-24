@@ -88,6 +88,21 @@ const translations = {
             status: "Status",
             lastUpdated: "Last Updated"
         }
+    },
+    funcionarios: {
+        title: "Employees",
+        all: "All",
+        active: "Active",
+        inactive: "Inactive",
+        intern: "Intern",
+        vacation: "On Vacation",
+        searchPlaceholder: "Search..."
+    },
+    departments: {
+        srei: "SREI - Systems & Networks",
+        sre: "SRE - Education",
+        srap: "SRAP - Administration",
+        dre: "DRE - Regional Education"
     }
 }
 export default translations;

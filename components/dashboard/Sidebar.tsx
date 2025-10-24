@@ -11,13 +11,14 @@ export default function Sidebar() {
                     <div className="w-full h-16 bg-amber-900 flex items-center justify-center hover:bg-amber-800 transition-colors duration-200 cursor-pointer">
                         <i className="ri-dashboard-line text-white text-xl"></i>
                     </div>
-                    <div className="w-full h-16 bg-blue-900 flex flex-col items-center justify-center hover:bg-blue-800 transition-colors duration-200 cursor-pointer">
+                    <Link href="/dashboard" className="w-full h-16 bg-blue-900 flex flex-col items-center justify-center hover:bg-blue-800 transition-colors duration-200 cursor-pointer">
                         <i className="ri-ticket-line text-white text-xl"></i>
                         <span className="text-white text-sm">Tickets</span>
-                    </div>
-                    <div className="w-full h-16 bg-green-900 flex flex-col items-center justify-center hover:bg-green-800 transition-colors duration-200 cursor-pointer">
+                    </Link>
+
+                    <Link href="/dashboard/users" className="w-full h-16 bg-green-900 flex flex-col items-center justify-center hover:bg-green-800 transition-colors duration-200 cursor-pointer">
                         <i className="ri-user-settings-line text-white text-xl"></i>    
-                    </div>
+                    </Link>
                     <div className="w-full h-16 bg-red-900 flex items-center justify-center hover:bg-red-800 transition-colors duration-200 cursor-pointer">
                         <i className="ri-computer-line text-white text-xl"></i>
                     </div> 

@@ -40,7 +40,7 @@ export default function Login() {
                 showToast('success', t('login.success'), savedTheme);
                 resetFields();
                 setIsLoading(false);
-                router.push('/frontpage');
+                router.push('/dashboard');
                 return;
             }
 
@@ -61,7 +61,7 @@ export default function Login() {
                 showToast('success', t('login.success'), savedTheme);
                 resetFields();
                 setIsLoading(false);
-                router.push('/frontpage');
+                router.push('/dashboard');
             }
 
         } catch (error) {
