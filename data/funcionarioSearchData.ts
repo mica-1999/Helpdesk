@@ -17,11 +17,13 @@ export interface FuncionarioStatusConfig {
     };
 }
 
-export const funcionarioStatusConfigs: FuncionarioStatusConfig[] = [
+// Secretarias with their departments
+export const secretariasConfigs: FuncionarioStatusConfig[] = [
+    // Default GRM option
     {
-        key: "all",
-        translationKey: "funcionarios.all",
-        count: 24,
+        key: "GRM",
+        translationKey: "secretarias.grm",
+        count: 50,
         baseColors: {
             badge: "bg-[#E1E9ED] dark:bg-gray-600",
             text: "text-black dark:text-gray-200"
@@ -36,10 +38,30 @@ export const funcionarioStatusConfigs: FuncionarioStatusConfig[] = [
             badge: "bg-white bg-opacity-20 text-[#666cff] dark:text-[#7c3aed]"
         }
     },
+    // SRE - Secretaria Regional de Educação
     {
-        key: "ativo",
-        translationKey: "funcionarios.active",
-        count: 18,
+        key: "SRE",
+        translationKey: "secretarias.sre",
+        count: 12,
+        baseColors: {
+            badge: "bg-blue-200 dark:bg-blue-800",
+            text: "text-blue-800 dark:text-blue-100"
+        },
+        darkColors: {
+            badge: "dark:bg-blue-800",
+            text: "dark:text-blue-100"
+        },
+        selectedColors: {
+            background: "bg-blue-500 dark:bg-blue-600",
+            text: "text-white",
+            badge: "bg-white bg-opacity-20 text-blue-800 dark:text-blue-600"
+        }
+    },
+    // SRF - Secretaria Regional das Finanças
+    {
+        key: "SRF",
+        translationKey: "secretarias.srf",
+        count: 6,
         baseColors: {
             badge: "bg-green-200 dark:bg-green-800",
             text: "text-green-800 dark:text-green-100"
@@ -54,9 +76,48 @@ export const funcionarioStatusConfigs: FuncionarioStatusConfig[] = [
             badge: "bg-white bg-opacity-20 text-green-800 dark:text-green-600"
         }
     },
+    // SRAP - Secretaria Regional de Agricultura e Pescas
     {
-        key: "inativo",
-        translationKey: "funcionarios.inactive",
+        key: "SRAP",
+        translationKey: "secretarias.srap",
+        count: 3,
+        baseColors: {
+            badge: "bg-emerald-200 dark:bg-emerald-800",
+            text: "text-emerald-800 dark:text-emerald-100"
+        },
+        darkColors: {
+            badge: "dark:bg-emerald-800",
+            text: "dark:text-emerald-100"
+        },
+        selectedColors: {
+            background: "bg-emerald-500 dark:bg-emerald-600",
+            text: "text-white",
+            badge: "bg-white bg-opacity-20 text-emerald-800 dark:text-emerald-600"
+        }
+    },
+    // SRITJ - Secretaria Regional de Inclusão, Trabalho e Juventude
+    {
+        key: "SRITJ",
+        translationKey: "secretarias.sritj",
+        count: 3,
+        baseColors: {
+            badge: "bg-purple-200 dark:bg-purple-800",
+            text: "text-purple-800 dark:text-purple-100"
+        },
+        darkColors: {
+            badge: "dark:bg-purple-800",
+            text: "dark:text-purple-100"
+        },
+        selectedColors: {
+            background: "bg-purple-500 dark:bg-purple-600",
+            text: "text-white",
+            badge: "bg-white bg-opacity-20 text-purple-800 dark:text-purple-600"
+        }
+    },
+    // SRSPC - Secretaria Regional de Saúde e Proteção Civil
+    {
+        key: "SRSPC",
+        translationKey: "secretarias.srspc",
         count: 3,
         baseColors: {
             badge: "bg-red-200 dark:bg-red-800",
@@ -72,68 +133,30 @@ export const funcionarioStatusConfigs: FuncionarioStatusConfig[] = [
             badge: "bg-white bg-opacity-20 text-red-800 dark:text-red-600"
         }
     },
+    // SRETC - Secretaria Regional de Economia, Turismo e Cultura
     {
-        key: "estagiario",
-        translationKey: "funcionarios.intern",
-        count: 2,
+        key: "SRETC",
+        translationKey: "secretarias.sretc",
+        count: 3,
         baseColors: {
-            badge: "bg-blue-200 dark:bg-blue-800",
-            text: "text-blue-800 dark:text-blue-100"
+            badge: "bg-orange-200 dark:bg-orange-800",
+            text: "text-orange-800 dark:text-orange-100"
         },
         darkColors: {
-            badge: "dark:bg-blue-800",
-            text: "dark:text-blue-100"
+            badge: "dark:bg-orange-800",
+            text: "dark:text-orange-100"
         },
         selectedColors: {
-            background: "bg-blue-500 dark:bg-blue-600",
+            background: "bg-orange-500 dark:bg-orange-600",
             text: "text-white",
-            badge: "bg-white bg-opacity-20 text-blue-800 dark:text-blue-600"
+            badge: "bg-white bg-opacity-20 text-orange-800 dark:text-orange-600"
         }
     },
-    {
-        key: "ferias",
-        translationKey: "funcionarios.vacation",
-        count: 1,
-        baseColors: {
-            badge: "bg-yellow-200 dark:bg-yellow-800",
-            text: "text-yellow-800 dark:text-yellow-100"
-        },
-        darkColors: {
-            badge: "dark:bg-yellow-800",
-            text: "dark:text-yellow-100"
-        },
-        selectedColors: {
-            background: "bg-yellow-500 dark:bg-yellow-600",
-            text: "text-white",
-            badge: "bg-white bg-opacity-20 text-yellow-800 dark:text-yellow-600"
-        }
-    }
-];
-
-// Departments configuration
-export const departmentConfigs: FuncionarioStatusConfig[] = [
+    // SREI - Secretaria Regional de Equipamentos e Infraestruturas
     {
         key: "SREI",
-        translationKey: "departments.srei",
-        count: 8,
-        baseColors: {
-            badge: "bg-purple-200 dark:bg-purple-800",
-            text: "text-purple-800 dark:text-purple-100"
-        },
-        darkColors: {
-            badge: "dark:bg-purple-800",
-            text: "dark:text-purple-100"
-        },
-        selectedColors: {
-            background: "bg-purple-500 dark:bg-purple-600",
-            text: "text-white",
-            badge: "bg-white bg-opacity-20 text-purple-800 dark:text-purple-600"
-        }
-    },
-    {
-        key: "SRE",
-        translationKey: "departments.sre",
-        count: 6,
+        translationKey: "secretarias.srei",
+        count: 16,
         baseColors: {
             badge: "bg-indigo-200 dark:bg-indigo-800",
             text: "text-indigo-800 dark:text-indigo-100"
@@ -148,40 +171,23 @@ export const departmentConfigs: FuncionarioStatusConfig[] = [
             badge: "bg-white bg-opacity-20 text-indigo-800 dark:text-indigo-600"
         }
     },
+    // SPRG - Secretaria Regional da Presidência do Governo Regional
     {
-        key: "SRAP",
-        translationKey: "departments.srap",
-        count: 5,
+        key: "SPRG",
+        translationKey: "secretarias.sprg",
+        count: 4,
         baseColors: {
-            badge: "bg-teal-200 dark:bg-teal-800",
-            text: "text-teal-800 dark:text-teal-100"
+            badge: "bg-slate-200 dark:bg-slate-800",
+            text: "text-slate-800 dark:text-slate-100"
         },
         darkColors: {
-            badge: "dark:bg-teal-800",
-            text: "dark:text-teal-100"
+            badge: "dark:bg-slate-800",
+            text: "dark:text-slate-100"
         },
         selectedColors: {
-            background: "bg-teal-500 dark:bg-teal-600",
+            background: "bg-slate-500 dark:bg-slate-600",
             text: "text-white",
-            badge: "bg-white bg-opacity-20 text-teal-800 dark:text-teal-600"
-        }
-    },
-    {
-        key: "DRE",
-        translationKey: "departments.dre",
-        count: 5,
-        baseColors: {
-            badge: "bg-orange-200 dark:bg-orange-800",
-            text: "text-orange-800 dark:text-orange-100"
-        },
-        darkColors: {
-            badge: "dark:bg-orange-800",
-            text: "dark:text-orange-100"
-        },
-        selectedColors: {
-            background: "bg-orange-500 dark:bg-orange-600",
-            text: "text-white",
-            badge: "bg-white bg-opacity-20 text-orange-800 dark:text-orange-600"
+            badge: "bg-white bg-opacity-20 text-slate-800 dark:text-slate-600"
         }
     }
 ];

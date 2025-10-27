@@ -1,35 +1,56 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useTheme } from "@/context/ThemeContext";
-import { funcionarioStatusConfigs, departmentConfigs, getFuncionarioStatusStyling } from "@/data/funcionarioSearchData";
+import { secretariasConfigs, getFuncionarioStatusStyling } from "@/data/funcionarioSearchData";
+import { SearchProps } from "@/types/funcionarios";
 
-interface SearchProps {
-    selectedTipo: string;
-    setSelectedTipo: (tipo: string) => void;
-    searchTerm: string | null;
-    setSearchTerm: (searchTerm: string | null) => void;
-}
-
-export default function SearchFuncionario({ selectedTipo, setSelectedTipo, searchTerm, setSearchTerm }: SearchProps) {
+export default function SearchFuncionario({ selectedSecretaria, setSelectedSecretaria, selectedDepartamento, setSelectedDepartamento, searchTerm, setSearchTerm }: SearchProps) {
     const { t } = useTheme();
     const [placeholder, setPlaceholder] = useState("");
 
+    // Atualiza o placeholder com a tradução correta ao mudar o idioma quando o componente monta ou o idioma muda
     useEffect(() => {
         setPlaceholder(t("funcionarios.searchPlaceholder"));
     }, [t]);
 
-    // Handle search input
+    // Mudança no input de pesquisa
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(e.target.value || null);
     };
-
+    // Ao focar no input, limpar placeholder
     const handleFocus = () => {
         setPlaceholder("");
     };
+    // Ao desfocar, repor placeholder se input vazio
     const handleBlur = () => {
         if (!searchTerm || searchTerm.trim() === "") {
             setPlaceholder(t("funcionarios.searchPlaceholder"));
         }
+    };
+
+    // Helper function to handle secretaria selection
+    const handleSecretariaSelection = (key: string) => {
+        if (key === "GRM") {
+            setSelectedSecretaria(["GRM"]);
+        } else {
+            setSelectedSecretaria(prev => {
+                // Remove GRM ao selecionar outra secretaria
+                const withoutGRM = prev.filter((item: string) => item !== "GRM");
+                
+                // Toggle
+                if (withoutGRM.includes(key)) {
+                    const newSelection = withoutGRM.filter((item: string) => item !== key);
+                    return newSelection.length === 0 ? ["GRM"] : newSelection;
+                } else {
+                    return [...withoutGRM, key];
+                }
+            });
+        }
+    };
+
+    // Funcao para ajudar nas cores
+    const isSecretariaSelected = (key: string) => {
+        return selectedSecretaria.includes(key);
     };
 
     return (
@@ -64,48 +85,21 @@ export default function SearchFuncionario({ selectedTipo, setSelectedTipo, searc
                          </div>
                          
                          {/* Department Options */}
-                         {departmentConfigs.map((deptConfig, index) => {
-                            const isSelected = selectedTipo === deptConfig.key;
-                            const styling = getFuncionarioStatusStyling(deptConfig, isSelected);
+                         {secretariasConfigs.map((secretarias, index) => {
+                            const isSelected = isSecretariaSelected(secretarias.key);
+                            const styling = getFuncionarioStatusStyling(secretarias, isSelected);
                             
                             return (
                                 <div 
-                                    key={deptConfig.key}
-                                    onClick={() => setSelectedTipo(deptConfig.key)}
+                                    key={secretarias.key}
+                                    onClick={() => handleSecretariaSelection(secretarias.key)}
                                     className={`${styling.containerClass} ${index === 0 ? 'mt-3' : ''}`}
                                 >
                                     <h5 className={styling.textClass}>
-                                        {t(deptConfig.translationKey)}
+                                        {secretarias.key}
                                     </h5>
                                     <span className={styling.badgeClass}>
-                                        {deptConfig.count}
-                                    </span>
-                                </div>
-                            );
-                         })}
-
-                         {/* Employee Status Section - Now at bottom */}
-                         <div className="mt-5 px-4 flex justify-between items-center">
-                            <h5 className="text-[#666cff] dark:text-[#a855f7] text-[16px] font-bold font-sans tracking-wide">Employee Status</h5>
-                            <i className="ri-information-line text-[#666cff] dark:text-[#a855f7] text-lg hover:text-[#5a5fe6] dark:hover:text-[#9333ea] cursor-pointer transition-colors duration-200"></i>
-                         </div>
-                         
-                         {/* Status Options */}
-                         {funcionarioStatusConfigs.map((statusConfig, index) => {
-                            const isSelected = selectedTipo === statusConfig.key;
-                            const styling = getFuncionarioStatusStyling(statusConfig, isSelected);
-                            
-                            return (
-                                <div 
-                                    key={statusConfig.key}
-                                    onClick={() => setSelectedTipo(statusConfig.key)}
-                                    className={`${styling.containerClass} ${index === 0 ? 'mt-3' : ''}`}
-                                >
-                                    <h5 className={styling.textClass}>
-                                        {t(statusConfig.translationKey)}
-                                    </h5>
-                                    <span className={styling.badgeClass}>
-                                        {statusConfig.count}
+                                        {secretarias.count}
                                     </span>
                                 </div>
                             );

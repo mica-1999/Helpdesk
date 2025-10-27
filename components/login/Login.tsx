@@ -235,7 +235,6 @@ export default function Login() {
                             </div>
                         </div>
 
-                        {/* Subtle grid pattern overlay */}
                         <div className="absolute inset-0 opacity-10">
                             <div className="w-full h-full" style={{
                                 backgroundImage: `

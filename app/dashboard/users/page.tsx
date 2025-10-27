@@ -1,23 +1,42 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SearchFuncionario from "@/components/dashboard/funcionarios/SearchFuncionario";
 import FuncionariosContent from "@/components/dashboard/funcionarios/FuncionariosContent";
 
 export default function FuncionarioPage() {
-    const [tipoFuncionario, setTipoFuncionario] = useState("all");
+
+    // Arrays para múltipla seleção sec/dept e pesquisa
+    const [selectedSecretaria, setSelectedSecretaria] = useState<string[]>(["GRM"]);
+    const [selectedDepartamento, setSelectedDepartamento] = useState<string[]>(["GRM"]);
     const [searchTerm, setSearchTerm] = useState<string | null>(null);
+
+    // Testing
+    useEffect(() => {
+        console.log("Selected Secretaria:", selectedSecretaria);
+    },[selectedSecretaria]);
 
     return (
         <>
-            <SearchFuncionario selectedTipo={tipoFuncionario} setSelectedTipo={setTipoFuncionario} searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
+            <SearchFuncionario 
+                selectedSecretaria={selectedSecretaria} 
+                setSelectedSecretaria={setSelectedSecretaria}
+                selectedDepartamento={selectedDepartamento}
+                setSelectedDepartamento={setSelectedDepartamento}
+                searchTerm={searchTerm} 
+                setSearchTerm={setSearchTerm}
+            />
             {/* Main content area - right side */}
             <div className="flex-1 bg-gray-100 dark:bg-gray-800 flex flex-col">
                 <div className="flex-1">
-                    <FuncionariosContent selectedEstado={tipoFuncionario} searchTerm={searchTerm} />
+                    <FuncionariosContent 
+                        selectedSecretaria={selectedSecretaria}
+                        selectedDepartamento={selectedDepartamento}
+                        searchTerm={searchTerm} 
+                    />
                 </div>
                 
-                {/* Footer at bottom of main content area */}
-                {/* <Footer /> */}
+                
+                {/* <Footer no fim se for preciso /> */}
             </div>
         </>
     );

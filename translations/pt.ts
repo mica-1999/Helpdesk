@@ -103,6 +103,17 @@ const translations = {
         sre: "SRE - Educação",
         srap: "SRAP - Administração",
         dre: "DRE - Educação Regional"
+    },
+    secretarias: {
+        grm: "GRM - Todos os Funcionários",
+        sre: "SRE - Educação",
+        srf: "SRF - Finanças",
+        srap: "SRAP - Agricultura",
+        sritj: "SRITJ - Inclusão e Trabalho",
+        srspc: "SRSPC - Saúde",
+        sretc: "SRETC - Economia e Turismo",
+        srei: "SREI - Infraestruturas",
+        sprg: "SPRG - Presidência"
     }
 }
 export default translations;

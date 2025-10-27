@@ -3,11 +3,7 @@ import { useState, useMemo, useEffect } from "react"
 import Image from "next/image";
 import { ticketsData, getStatusStyling } from "@/data/ticketsData";
 import { useTheme } from "@/context/ThemeContext";
-
-interface PedidosProps {
-    selectedEstado: string;
-    searchTerm: string | null;
-}
+import { PedidosProps } from "@/types/pedidos";
 
 export default function Pedidos({ selectedEstado, searchTerm }: PedidosProps) {
     const { t } = useTheme();

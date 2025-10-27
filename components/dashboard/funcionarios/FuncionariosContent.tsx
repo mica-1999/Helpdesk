@@ -1,31 +1,32 @@
 "use client"
 import { useMemo } from "react"
-import Image from "next/image";
-import { funcionariosData, Funcionario } from "@/data/funcionariosData";
 import { useTheme } from "@/context/ThemeContext";
+import { funcionariosData, Funcionario } from "@/data/funcionariosData";
+import { FuncionariosProps } from "@/types/funcionarios";
+import Image from "next/image";
 
-interface FuncionariosProps {
-    selectedEstado: string;
-    searchTerm: string | null;
-}
-
-export default function FuncionariosContent({ selectedEstado, searchTerm }: FuncionariosProps) {
+export default function FuncionariosContent({ selectedSecretaria, selectedDepartamento, searchTerm }: FuncionariosProps) {
     const { t } = useTheme();
     
-    // Filter employees based on department/secretaria and search term
+    // Memo para nao desempenho o cálculo dos funcionários filtrados
     const filteredFuncionarios = useMemo(() => {
         let filtered = funcionariosData;
         
-        // Filter by department, secretaria, or status
-        if (selectedEstado !== "all") {
+        // Filtro por secretaria (se não for "GRM") dá return dos funcionários dessas secretarias
+        if (!selectedSecretaria.includes("GRM")) {
             filtered = filtered.filter(funcionario => 
-                funcionario.department === selectedEstado || 
-                funcionario.secretaria === selectedEstado ||
-                funcionario.status === selectedEstado
+                selectedSecretaria.includes(funcionario.secretaria)
             );
         }
         
-        // Filter by search term across all employee fields
+        // Filtro por departamento (se não for "GRM") dá return dos funcionários desses departamentos
+        if (!selectedDepartamento.includes("GRM") && selectedSecretaria.includes("GRM")) {
+            filtered = filtered.filter(funcionario => 
+                selectedDepartamento.includes(funcionario.department)
+            );
+        }
+
+        // Filtro por termo de pesquisa em todos os campos do funcionário, tem de ser junto arranjar maneira
         if (searchTerm && searchTerm.trim() !== "") {
             const searchQuery = searchTerm.toLowerCase();
             filtered = filtered.filter(funcionario => 
@@ -47,7 +48,7 @@ export default function FuncionariosContent({ selectedEstado, searchTerm }: Func
         }
         
         return filtered;
-    }, [selectedEstado, searchTerm]);
+    }, [selectedSecretaria, selectedDepartamento, searchTerm]);
 
     return (
         <>
@@ -64,7 +65,6 @@ export default function FuncionariosContent({ selectedEstado, searchTerm }: Func
                     <span className="text-gray-600 dark:text-gray-300 text-sm">({filteredFuncionarios.length}) all employees</span>
                 </div>
                 
-                {/* Employee cards grid with scrollbar - calculated height: 100vh - 64px - 64px - 36px = calc(100vh - 164px) */}
                 <div className="w-full overflow-y-auto bg-gray-100 dark:bg-gray-800 p-6" style={{ height: 'calc(100vh - 164px)' }}>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                         {filteredFuncionarios.map((funcionario: Funcionario, index: number) => (

@@ -55,7 +55,6 @@ export default function RootLayout({
         className="antialiased"
         suppressHydrationWarning
       >
-        {/* NextAuthSessionProvider must be the outermost provider */}
         <NextAuthSessionProvider>
           <ThemeProvider>
             <ToastContainer />
