@@ -28,23 +28,25 @@ export default function FuncionariosContent({ selectedSecretaria, selectedDepart
 
         // Filtro por termo de pesquisa em todos os campos do funcionário, tem de ser junto arranjar maneira
         if (searchTerm && searchTerm.trim() !== "") {
-            const searchQuery = searchTerm.toLowerCase();
-            filtered = filtered.filter(funcionario => 
-                // Search in employee name
-                funcionario.name.toLowerCase().includes(searchQuery) ||
-                // Search in employee email
-                funcionario.email.toLowerCase().includes(searchQuery) ||
-                // Search in department
-                funcionario.department.toLowerCase().includes(searchQuery) ||
-                // Search in secretaria
-                funcionario.secretaria.toLowerCase().includes(searchQuery) ||
-                // Search in position
-                funcionario.position.toLowerCase().includes(searchQuery) ||
-                // Search in NIF
-                funcionario.nif.includes(searchQuery) ||
-                // Search in numero mecanografico
-                funcionario.numeroMecanografico.includes(searchQuery)
-            );
+            const searchKeywords = searchTerm.toLowerCase().trim().split(/\s+/); // Split by spaces and remove empty strings
+            
+            filtered = filtered.filter(funcionario => {
+                // Create a combined searchable text for each employee
+                const searchableText = [
+                    funcionario.name,
+                    funcionario.email,
+                    funcionario.department,
+                    funcionario.secretaria,
+                    funcionario.position,
+                    funcionario.nif,
+                    funcionario.numeroMecanografico
+                ].join(' ').toLowerCase();
+                
+                // All keywords must be found in the searchable text
+                return searchKeywords.every(keyword => 
+                    searchableText.includes(keyword)
+                );
+            });
         }
         
         return filtered;
