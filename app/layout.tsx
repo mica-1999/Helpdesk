@@ -16,8 +16,8 @@ import { ThemeProvider } from "@/context/ThemeContext";
 import ThemeBtn from "@/components/themebtn/Button";
 
 export const metadata: Metadata = {
-  title: "Helpdesk System",
-  description: "Internal helpdesk management system",
+  title: "Helpdesk System - Micael Ribeiro",
+  description: "Internal helpdesk management system developed by Micael Ribeiro.",
 };
 
 export default function RootLayout({
