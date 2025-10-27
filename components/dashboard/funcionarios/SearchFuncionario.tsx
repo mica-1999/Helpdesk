@@ -56,36 +56,9 @@ export default function SearchFuncionario({ selectedTipo, setSelectedTipo, searc
                         </div>
                     </div> 
 
-                    {/* Employee Status Section */}
+                    {/* Departments Section - Now at top */}
                     <div className="w-full flex flex-col">
                          <div className="mt-4 px-4 flex justify-between items-center">
-                            <h5 className="text-[#666cff] dark:text-[#a855f7] text-[16px] font-bold font-sans tracking-wide">Employee Status</h5>
-                            <i className="ri-information-line text-[#666cff] dark:text-[#a855f7] text-lg hover:text-[#5a5fe6] dark:hover:text-[#9333ea] cursor-pointer transition-colors duration-200"></i>
-                         </div>
-                         
-                         {/* Status Options */}
-                         {funcionarioStatusConfigs.map((statusConfig, index) => {
-                            const isSelected = selectedTipo === statusConfig.key;
-                            const styling = getFuncionarioStatusStyling(statusConfig, isSelected);
-                            
-                            return (
-                                <div 
-                                    key={statusConfig.key}
-                                    onClick={() => setSelectedTipo(statusConfig.key)}
-                                    className={`${styling.containerClass} ${index === 0 ? 'mt-3' : ''}`}
-                                >
-                                    <h5 className={styling.textClass}>
-                                        {t(statusConfig.translationKey)}
-                                    </h5>
-                                    <span className={styling.badgeClass}>
-                                        {statusConfig.count}
-                                    </span>
-                                </div>
-                            );
-                         })}
-
-                         {/* Departments Section */}
-                         <div className="mt-5 px-4 flex justify-between items-center">
                             <h5 className="text-[#666cff] dark:text-[#a855f7] text-[16px] font-bold font-sans tracking-wide">Departments</h5>
                             <i className="ri-building-line text-[#666cff] dark:text-[#a855f7] text-lg hover:text-[#5a5fe6] dark:hover:text-[#9333ea] cursor-pointer transition-colors duration-200"></i>
                          </div>
@@ -106,6 +79,33 @@ export default function SearchFuncionario({ selectedTipo, setSelectedTipo, searc
                                     </h5>
                                     <span className={styling.badgeClass}>
                                         {deptConfig.count}
+                                    </span>
+                                </div>
+                            );
+                         })}
+
+                         {/* Employee Status Section - Now at bottom */}
+                         <div className="mt-5 px-4 flex justify-between items-center">
+                            <h5 className="text-[#666cff] dark:text-[#a855f7] text-[16px] font-bold font-sans tracking-wide">Employee Status</h5>
+                            <i className="ri-information-line text-[#666cff] dark:text-[#a855f7] text-lg hover:text-[#5a5fe6] dark:hover:text-[#9333ea] cursor-pointer transition-colors duration-200"></i>
+                         </div>
+                         
+                         {/* Status Options */}
+                         {funcionarioStatusConfigs.map((statusConfig, index) => {
+                            const isSelected = selectedTipo === statusConfig.key;
+                            const styling = getFuncionarioStatusStyling(statusConfig, isSelected);
+                            
+                            return (
+                                <div 
+                                    key={statusConfig.key}
+                                    onClick={() => setSelectedTipo(statusConfig.key)}
+                                    className={`${styling.containerClass} ${index === 0 ? 'mt-3' : ''}`}
+                                >
+                                    <h5 className={styling.textClass}>
+                                        {t(statusConfig.translationKey)}
+                                    </h5>
+                                    <span className={styling.badgeClass}>
+                                        {statusConfig.count}
                                     </span>
                                 </div>
                             );
