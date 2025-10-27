@@ -7,11 +7,36 @@ import { SearchProps } from "@/types/funcionarios";
 export default function SearchFuncionario({ selectedSecretaria, setSelectedSecretaria, selectedDepartamento, setSelectedDepartamento, searchTerm, setSearchTerm }: SearchProps) {
     const { t } = useTheme();
     const [placeholder, setPlaceholder] = useState("");
+    const [openDropdowns, setOpenDropdowns] = useState<string[]>([]);
 
     // Atualiza o placeholder com a tradução correta ao mudar o idioma quando o componente monta ou o idioma muda
     useEffect(() => {
         setPlaceholder(t("funcionarios.searchPlaceholder"));
     }, [t]);
+
+    // Clean up departments when their parent secretaria is deselected
+    useEffect(() => {
+        if (selectedSecretaria.includes("GRM")) {
+            // If GRM is selected, clear all departments
+            setSelectedDepartamento([]);
+            return;
+        }
+
+        // Remove departments that belong to deselected secretarias
+        setSelectedDepartamento(prev => {
+            const validDepartments = prev.filter(department => {
+                // Find which secretaria this department belongs to
+                const parentSecretaria = secretariasConfigs.find(secretaria => 
+                    secretaria.departments && secretaria.departments.includes(department)
+                );
+                
+                // Keep the department only if its parent secretaria is still selected
+                return parentSecretaria && selectedSecretaria.includes(parentSecretaria.key);
+            });
+            
+            return validDepartments;
+        });
+    }, [selectedSecretaria]);
 
     // Mudança no input de pesquisa
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,10 +53,13 @@ export default function SearchFuncionario({ selectedSecretaria, setSelectedSecre
         }
     };
 
-    // Helper function to handle secretaria selection
+    // Mudança na seleção de secretaria
     const handleSecretariaSelection = (key: string) => {
         if (key === "GRM") {
             setSelectedSecretaria(["GRM"]);
+            // Reset departments and close all dropdowns when GRM is selected
+            setSelectedDepartamento([]);
+            setOpenDropdowns([]);
         } else {
             setSelectedSecretaria(prev => {
                 // Remove GRM ao selecionar outra secretaria
@@ -45,7 +73,42 @@ export default function SearchFuncionario({ selectedSecretaria, setSelectedSecre
                     return [...withoutGRM, key];
                 }
             });
+            
+            // Also toggle dropdown when secretaria is clicked (only for non-GRM)
+            const secretaria = secretariasConfigs.find(s => s.key === key);
+            if (secretaria && secretaria.departments && secretaria.departments.length > 0) {
+                setOpenDropdowns(prev => {
+                    if (prev.includes(key)) {
+                        return prev.filter(item => item !== key);
+                    } else {
+                        return [...prev, key];
+                    }
+                });
+            }
         }
+    };
+
+    // Funcao para abrir/fechar dropdowns
+    const toggleDropdown = (key: string, e: React.MouseEvent) => {
+        e.stopPropagation(); // Prevent secretaria selection when clicking dropdown toggle
+        setOpenDropdowns(prev => {
+            if (prev.includes(key)) {
+                return prev.filter(item => item !== key);
+            } else {
+                return [...prev, key];
+            }
+        });
+    };
+
+    // Funcao para selecionar departamentos
+    const handleDepartmentSelection = (department: string) => {
+        setSelectedDepartamento(prev => {
+            if (prev.includes(department)) {
+                return prev.filter(dep => dep !== department);
+            } else {
+                return [...prev, department];
+            }
+        });
     };
 
     // Funcao para ajudar nas cores
@@ -77,30 +140,71 @@ export default function SearchFuncionario({ selectedSecretaria, setSelectedSecre
                         </div>
                     </div> 
 
-                    {/* Departments Section - Now at top */}
+                    {/* Secretarias Section */}
                     <div className="w-full flex flex-col">
                          <div className="mt-4 px-4 flex justify-between items-center">
-                            <h5 className="text-[#666cff] dark:text-[#a855f7] text-[16px] font-bold font-sans tracking-wide">Departments</h5>
-                            <i className="ri-building-line text-[#666cff] dark:text-[#a855f7] text-lg hover:text-[#5a5fe6] dark:hover:text-[#9333ea] cursor-pointer transition-colors duration-200"></i>
+                            <h5 className="text-[#666cff] dark:text-[#a855f7] text-[16px] font-bold font-sans tracking-wide">Secretarias</h5>
+                            <i className="ri-government-line text-[#666cff] dark:text-[#a855f7] text-lg hover:text-[#5a5fe6] dark:hover:text-[#9333ea] cursor-pointer transition-colors duration-200"></i>
                          </div>
                          
-                         {/* Department Options */}
+                         {/* Secretarias with Dropdown Options */}
                          {secretariasConfigs.map((secretarias, index) => {
                             const isSelected = isSecretariaSelected(secretarias.key);
+                            const isDropdownOpen = openDropdowns.includes(secretarias.key);
                             const styling = getFuncionarioStatusStyling(secretarias, isSelected);
+                            const hasDepartments = secretarias.departments && secretarias.departments.length > 0;
                             
                             return (
-                                <div 
-                                    key={secretarias.key}
-                                    onClick={() => handleSecretariaSelection(secretarias.key)}
-                                    className={`${styling.containerClass} ${index === 0 ? 'mt-3' : ''}`}
-                                >
-                                    <h5 className={styling.textClass}>
-                                        {secretarias.key}
-                                    </h5>
-                                    <span className={styling.badgeClass}>
-                                        {secretarias.count}
-                                    </span>
+                                <div key={secretarias.key} className={`${index === 0 ? 'mt-3' : ''}`}>
+                                    {/* Secretaria Header */}
+                                    <div 
+                                        onClick={() => handleSecretariaSelection(secretarias.key)}
+                                        className={`${styling.containerClass} relative`}
+                                    >
+                                        <h5 className={styling.textClass}>
+                                            {secretarias.key}
+                                        </h5>
+                                        <div className="flex items-center gap-2">
+                                            <span className={styling.badgeClass}>
+                                                {secretarias.count}
+                                            </span>
+                                            {hasDepartments && (
+                                                <button
+                                                    onClick={(e) => toggleDropdown(secretarias.key, e)}
+                                                    className="ml-1 text-sm transition-transform duration-200"
+                                                >
+                                                    <i className={`ri-arrow-down-s-line transform ${isDropdownOpen ? 'rotate-180' : ''}`}></i>
+                                                </button>
+                                            )}
+                                        </div>
+                                    </div>
+
+                                    {/* Department Dropdown */}
+                                    {hasDepartments && isDropdownOpen && (
+                                        <div className="bg-gray-50 dark:bg-gray-700 border-l-4 border-[#666cff] dark:border-[#7c3aed]">
+                                            {secretarias.departments.map((department) => {
+                                                const isDepartmentSelected = selectedDepartamento.includes(department);
+                                                return (
+                                                    <div 
+                                                        key={department}
+                                                        onClick={() => handleDepartmentSelection(department)}
+                                                        className={`h-8 px-6 flex justify-between items-center cursor-pointer transition-colors duration-200 ${
+                                                            isDepartmentSelected 
+                                                                ? 'bg-[#666cff] dark:bg-[#7c3aed] text-white' 
+                                                                : 'hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-200'
+                                                        }`}
+                                                    >
+                                                        <span className="text-[13px] font-sans">
+                                                            {department}
+                                                        </span>
+                                                        {isDepartmentSelected && (
+                                                            <i className="ri-check-line text-xs"></i>
+                                                        )}
+                                                    </div>
+                                                );
+                                            })}
+                                        </div>
+                                    )}
                                 </div>
                             );
                          })}

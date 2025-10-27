@@ -19,8 +19,8 @@ export default function FuncionariosContent({ selectedSecretaria, selectedDepart
             );
         }
         
-        // Filtro por departamento (se não for "GRM") dá return dos funcionários desses departamentos
-        if (!selectedDepartamento.includes("GRM") && selectedSecretaria.includes("GRM")) {
+        // Filtro por departamento (apenas se tiver departamentos selecionados)
+        if (selectedDepartamento.length > 0) {
             filtered = filtered.filter(funcionario => 
                 selectedDepartamento.includes(funcionario.department)
             );
@@ -62,7 +62,12 @@ export default function FuncionariosContent({ selectedSecretaria, selectedDepart
                 </div>
 
                 <div className="flex w-full h-9 bg-white dark:bg-gray-900 border-b-2 border-r-2 border-gray-200 dark:border-gray-600 items-center justify-between px-4 shrink-0">
-                    <span className="text-gray-600 dark:text-gray-300 text-sm">({filteredFuncionarios.length}) all employees</span>
+                    <span className="text-gray-600 dark:text-gray-300 text-sm">
+                        ({filteredFuncionarios.length}) employees, Secretarias: {selectedSecretaria.includes("GRM") ? "All" : selectedSecretaria.join(", ")}
+                        {selectedDepartamento.length > 0 && (
+                            <>, Departamento: {selectedDepartamento.join(", ")}</>
+                        )}
+                    </span>
                 </div>
                 
                 <div className="w-full overflow-y-auto bg-gray-100 dark:bg-gray-800 p-6" style={{ height: 'calc(100vh - 164px)' }}>

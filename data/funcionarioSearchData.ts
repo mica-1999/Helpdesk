@@ -2,6 +2,7 @@ export interface FuncionarioStatusConfig {
     key: string;
     translationKey: string;
     count: number;
+    departments: string[];
     baseColors: {
         badge: string;
         text: string;
@@ -24,6 +25,7 @@ export const secretariasConfigs: FuncionarioStatusConfig[] = [
         key: "GRM",
         translationKey: "secretarias.grm",
         count: 50,
+        departments: [], // All departments available when GRM is selected
         baseColors: {
             badge: "bg-[#E1E9ED] dark:bg-gray-600",
             text: "text-black dark:text-gray-200"
@@ -43,6 +45,7 @@ export const secretariasConfigs: FuncionarioStatusConfig[] = [
         key: "SRE",
         translationKey: "secretarias.sre",
         count: 12,
+        departments: ["DRJ", "DRD", "DRE", "DRAE", "DRPRI"],
         baseColors: {
             badge: "bg-blue-200 dark:bg-blue-800",
             text: "text-blue-800 dark:text-blue-100"
@@ -62,6 +65,7 @@ export const secretariasConfigs: FuncionarioStatusConfig[] = [
         key: "SRF",
         translationKey: "secretarias.srf",
         count: 6,
+        departments: ["DROT", "AT-RAM", "DREM", "GSRF"],
         baseColors: {
             badge: "bg-green-200 dark:bg-green-800",
             text: "text-green-800 dark:text-green-100"
@@ -81,6 +85,7 @@ export const secretariasConfigs: FuncionarioStatusConfig[] = [
         key: "SRAP",
         translationKey: "secretarias.srap",
         count: 3,
+        departments: ["DRA", "DRAAC", "DROTe"],
         baseColors: {
             badge: "bg-emerald-200 dark:bg-emerald-800",
             text: "text-emerald-800 dark:text-emerald-100"
@@ -100,6 +105,7 @@ export const secretariasConfigs: FuncionarioStatusConfig[] = [
         key: "SRITJ",
         translationKey: "secretarias.sritj",
         count: 3,
+        departments: ["DRJ", "DRCAS", "DRT"],
         baseColors: {
             badge: "bg-purple-200 dark:bg-purple-800",
             text: "text-purple-800 dark:text-purple-100"
@@ -119,6 +125,7 @@ export const secretariasConfigs: FuncionarioStatusConfig[] = [
         key: "SRSPC",
         translationKey: "secretarias.srspc",
         count: 3,
+        departments: ["DRS", "SRPC", "IASAUDE"],
         baseColors: {
             badge: "bg-red-200 dark:bg-red-800",
             text: "text-red-800 dark:text-red-100"
@@ -138,6 +145,7 @@ export const secretariasConfigs: FuncionarioStatusConfig[] = [
         key: "SRETC",
         translationKey: "secretarias.sretc",
         count: 3,
+        departments: ["DRT", "DRC", "DRET"],
         baseColors: {
             badge: "bg-orange-200 dark:bg-orange-800",
             text: "text-orange-800 dark:text-orange-100"
@@ -157,6 +165,7 @@ export const secretariasConfigs: FuncionarioStatusConfig[] = [
         key: "SREI",
         translationKey: "secretarias.srei",
         count: 16,
+        departments: ["DRE", "DREPH", "DRET", "DRPOP"],
         baseColors: {
             badge: "bg-indigo-200 dark:bg-indigo-800",
             text: "text-indigo-800 dark:text-indigo-100"
@@ -176,6 +185,7 @@ export const secretariasConfigs: FuncionarioStatusConfig[] = [
         key: "SPRG",
         translationKey: "secretarias.sprg",
         count: 4,
+        departments: ["GSR", "DRAECE", "DRCM", "DRCS"],
         baseColors: {
             badge: "bg-slate-200 dark:bg-slate-800",
             text: "text-slate-800 dark:text-slate-100"

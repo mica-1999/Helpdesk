@@ -10,6 +10,8 @@ export default function FuncionarioPage() {
     const [selectedDepartamento, setSelectedDepartamento] = useState<string[]>(["GRM"]);
     const [searchTerm, setSearchTerm] = useState<string | null>(null);
 
+    
+
     // Testing
     useEffect(() => {
         console.log("Selected Secretaria:", selectedSecretaria);
