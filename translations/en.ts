@@ -60,7 +60,7 @@ const translations = {
     },
     tickets: {
         title: "Tickets",
-        newTicket: "+ New ticket",
+        newTicket: "+ New",
         searchPlaceholder: "Search...",
         allTickets: "All tickets",
         ticketsToHandle: "Tickets to handle",
@@ -92,12 +92,26 @@ const translations = {
     funcionarios: {
         title: "Employees",
         allEmployees: "All Employees",
+        addEmployee: "+ Add",
         all: "All",
         active: "Active",
-        inactive: "Inactive",
+        inactive: "Inactive", 
         intern: "Intern",
         vacation: "On Vacation",
         searchPlaceholder: "Search..."
+    },
+    equipment: {
+        title: "Equipment",
+        allEquipment: "All Equipment",
+        searchPlaceholder: "Search...",
+        all: "All",
+        inUse: "In Use",
+        new: "New", 
+        decommissioned: "Decommissioned",
+        general: "General",
+        networks: "Networks",
+        printers: "Printers",
+        voips: "VoIPs"
     },
     departments: {
         srei: "SREI - Systems & Networks",

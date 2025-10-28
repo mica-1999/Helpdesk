@@ -59,7 +59,7 @@ const translations = {
     },
     tickets: {
         title: "Pedidos",
-        newTicket: "+ Novo pedido",
+        newTicket: "+ Novo",
         searchPlaceholder: "Pesquisar...",
         allTickets: "Todos os pedidos",
         ticketsToHandle: "Pedidos para tratar",
@@ -91,12 +91,26 @@ const translations = {
     funcionarios: {
         title: "Funcionários",
         allEmployees: "Todos os Funcionários",
+        addEmployee: "+ Adicionar",
         all: "Todos",
         active: "Ativo",
         inactive: "Inativo",
         intern: "Estagiário",
         vacation: "De Férias",
         searchPlaceholder: "Pesquisar..."
+    },
+    equipment: {
+        title: "Equipamentos",
+        allEquipment: "Todos os Equipamentos",
+        searchPlaceholder: "Pesquisar...",
+        all: "Todos",
+        inUse: "Em Uso", 
+        new: "Novo",
+        decommissioned: "Abate",
+        general: "Geral",
+        networks: "Redes",
+        printers: "Impressoras",
+        voips: "VoIPs"
     },
     departments: {
         srei: "SREI - Sistemas e Redes",

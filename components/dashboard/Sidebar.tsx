@@ -18,9 +18,9 @@ export default function Sidebar() {
                     <Link href="/dashboard/users" className="w-full h-16 bg-[#666cff] dark:bg-[#7c3aed] flex flex-col items-center justify-center hover:bg-[#5a5fe6] dark:hover:bg-[#6d28d9] transition-colors duration-200 cursor-pointer">
                         <i className="ri-user-settings-line text-white text-xl"></i>    
                     </Link>
-                    <div className="w-full h-16 bg-[#666cff] dark:bg-[#7c3aed] flex items-center justify-center hover:bg-[#5a5fe6] dark:hover:bg-[#6d28d9] transition-colors duration-200 cursor-pointer">
+                    <Link href="/dashboard/equipment" className="w-full h-16 bg-[#666cff] dark:bg-[#7c3aed] flex items-center justify-center hover:bg-[#5a5fe6] dark:hover:bg-[#6d28d9] transition-colors duration-200 cursor-pointer">
                         <i className="ri-computer-line text-white text-xl"></i>
-                    </div> 
+                    </Link> 
                 </div>
 
                 {/* Sidebar Items Bottom*/}
