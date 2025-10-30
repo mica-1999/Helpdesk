@@ -4,7 +4,7 @@ import { equipmentData, Equipment } from "@/data/equipmentData";
 import Image from "next/image";
 
 export default function EquipmentContent() {
-    const { t } = useTheme();
+    const { t } = useTheme();  // Funcao de traducao do contexto de tema
 
     return (
         <>

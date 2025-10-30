@@ -21,23 +21,25 @@ export default function Pedidos({ selectedEstado, searchTerm }: PedidosProps) {
         
         // Filter by search term across all fields if provided
         if (searchTerm && searchTerm.trim() !== "") {
-            const searchQuery = searchTerm.toLowerCase();
-            filtered = filtered.filter(ticket => 
-                // Search in ticket ID
-                ticket.ticketId.toLowerCase().includes(searchQuery) ||
-                // Search in subject
-                ticket.subject.toLowerCase().includes(searchQuery) ||
-                // Search in requester name
-                ticket.requester.name.toLowerCase().includes(searchQuery) ||
-                // Search in requester email
-                ticket.requester.email.toLowerCase().includes(searchQuery) ||
-                // Search in work location
-                ticket.workLocation.toLowerCase().includes(searchQuery) ||
-                // Search in status name
-                ticket.status.name.toLowerCase().includes(searchQuery) ||
-                // Search in last message
-                ticket.lastMessage.toLowerCase().includes(searchQuery)
-            );
+            const searchKeywords = searchTerm.toLowerCase().trim().split(/\s+/); // Split by spaces and remove empty strings
+            
+            filtered = filtered.filter(ticket => {
+                // Create a combined searchable text for each ticket
+                const searchableText = [
+                    ticket.ticketId,
+                    ticket.subject,
+                    ticket.requester.name,
+                    ticket.requester.email,
+                    ticket.workLocation,
+                    ticket.status.name,
+                    ticket.lastMessage
+                ].join(' ').toLowerCase();
+                
+                // All keywords must be found in the searchable text
+                return searchKeywords.every(keyword => 
+                    searchableText.includes(keyword)
+                );
+            });
         }
         
         return filtered;

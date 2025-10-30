@@ -5,8 +5,8 @@ import { equipmentStatusConfigs, equipmentTypeConfigs, getEquipmentStyling } fro
 import { SearchEquipmentProps } from "@/types/equipment";
 
 export default function SearchEquipamento({ selectedStatus, setSelectedStatus, selectedType, setSelectedType, searchTerm, setSearchTerm }: SearchEquipmentProps) {
-    const { t } = useTheme();
-    const [placeholder, setPlaceholder] = useState("");
+    const { t } = useTheme(); // Funcao de traducao do contexto de tema
+    const [placeholder, setPlaceholder] = useState(""); // Placeholder do input de pesquisa
 
     // Create equipment arrays with labels from translations
     const equipmentStatuses = equipmentStatusConfigs.map(status => ({
@@ -19,38 +19,38 @@ export default function SearchEquipamento({ selectedStatus, setSelectedStatus, s
         label: t(`equipment.${type.key}`)
     }));
 
-    // Update placeholder when language changes
+    // Muda o placeholder quando a lingua muda
     useEffect(() => {
         setPlaceholder(t("equipment.searchPlaceholder"));
     }, [t]);
 
-    // Handle search input change
+    // Mete o valor da pesquisa no state    
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(e.target.value || null);
     };
 
-    // Handle focus - clear placeholder
+    // Dá reset ao placeholder ao focar
     const handleFocus = () => {
         setPlaceholder("");
     };
 
-    // Handle blur - restore placeholder if empty
+    // Quando desfoca, repoe o placeholder se o campo estiver vazio
     const handleBlur = () => {
         if (!searchTerm || searchTerm.trim() === "") {
             setPlaceholder(t("equipment.searchPlaceholder"));
         }
     };
 
-    // Handle status selection
+    // Mudança na seleção de status
     const handleStatusSelection = (key: string) => {
         if (key === "all") {
             setSelectedStatus(["all"]);
         } else {
             setSelectedStatus(prev => {
-                // Remove "all" when selecting other statuses
+                // Remove "all" quando selecionar outros status
                 const withoutAll = prev.filter((item: string) => item !== "all");
                 
-                // Toggle the selected status
+                // Seleciona ou desseleciona o status
                 if (withoutAll.includes(key)) {
                     const newSelection = withoutAll.filter((item: string) => item !== key);
                     return newSelection.length === 0 ? ["all"] : newSelection;
@@ -61,7 +61,7 @@ export default function SearchEquipamento({ selectedStatus, setSelectedStatus, s
         }
     };
 
-    // Handle type selection
+    // Mudança na seleção de tipo
     const handleTypeSelection = (key: string) => {
         if (key === "all") {
             setSelectedType(["all"]);
@@ -114,15 +114,11 @@ export default function SearchEquipamento({ selectedStatus, setSelectedStatus, s
                             <i className="ri-search-line absolute left-3 top-1/2 transform -translate-y-1/2 text-[#666cff] dark:text-[#7c3aed] text-lg"></i>
                         </div>
                     </div> 
-
-                    {/* Equipment Status Section */}
                     <div className="w-full flex flex-col">
                          <div className="mt-4 px-4 flex justify-between items-center">
                             <h5 className="text-[#666cff] dark:text-[#a855f7] text-[16px] font-bold font-sans tracking-wide">Status</h5>
                             <i className="ri-bar-chart-box-line text-[#666cff] dark:text-[#a855f7] text-lg hover:text-[#5a5fe6] dark:hover:text-[#9333ea] cursor-pointer transition-colors duration-200"></i>
                          </div>
-                         
-                         {/* Equipment Status Options */}
                          {equipmentStatuses.map((status, index) => {
                             const isSelected = isStatusSelected(status.key);
                             const styling = getEquipmentStyling(status, isSelected);
@@ -147,15 +143,12 @@ export default function SearchEquipamento({ selectedStatus, setSelectedStatus, s
                          })}
 
                     </div>
-
-                    {/* Equipment Type Section */}
                     <div className="w-full flex flex-col">
                          <div className="mt-6 px-4 flex justify-between items-center">
                             <h5 className="text-[#666cff] dark:text-[#a855f7] text-[16px] font-bold font-sans tracking-wide">Tipo</h5>
                             <i className="ri-stack-line text-[#666cff] dark:text-[#a855f7] text-lg hover:text-[#5a5fe6] dark:hover:text-[#9333ea] cursor-pointer transition-colors duration-200"></i>
                          </div>
                          
-                         {/* Equipment Type Options */}
                          {equipmentTypes.map((type, index) => {
                             const isSelected = isTypeSelected(type.key);
                             const styling = getEquipmentStyling(type, isSelected);

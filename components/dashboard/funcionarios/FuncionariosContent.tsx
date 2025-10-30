@@ -31,7 +31,7 @@ export default function FuncionariosContent({ selectedSecretaria, selectedDepart
             const searchKeywords = searchTerm.toLowerCase().trim().split(/\s+/); // Split by spaces and remove empty strings
             
             filtered = filtered.filter(funcionario => {
-                // Create a combined searchable text for each employee
+                // Combina todos os campos relevantes num único texto para pesquisa
                 const searchableText = [
                     funcionario.name,
                     funcionario.email,
