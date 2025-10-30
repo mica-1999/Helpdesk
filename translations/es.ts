@@ -110,7 +110,14 @@ const translations = {
         general: "General",
         networks: "Redes",
         printers: "Impresoras",
-        voips: "VoIPs"
+        voips: "VoIPs",
+        itemsCount: "equipos"
+    },
+    loading: {
+        tickets: "Cargando tickets...",
+        users: "Cargando usuarios...",
+        equipment: "Cargando equipos...",
+        general: "Cargando..."
     },
     departments: {
         srei: "SREI - Sistemas y Redes",

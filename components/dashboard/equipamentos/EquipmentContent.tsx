@@ -3,8 +3,43 @@ import { useTheme } from "@/context/ThemeContext";
 import { equipmentData, Equipment } from "@/data/equipmentData";
 import Image from "next/image";
 
-export default function EquipmentContent() {
+interface EquipmentContentProps {
+    selectedStatus: string[];
+    searchTerm: string | null;
+}
+
+export default function EquipmentContent({ selectedStatus, searchTerm }: EquipmentContentProps) {
     const { t } = useTheme();  // Funcao de traducao do contexto de tema
+
+    // Filter equipment based on status and search term using AND operation
+    const filteredEquipment = equipmentData.filter((equipment: Equipment) => {
+        // Status filter - if "all" is selected or equipment status is in selectedStatus
+        const statusMatch = selectedStatus.includes("all") || selectedStatus.includes(equipment.status);
+        
+        // Search term filter - search in multiple fields with keyword AND operation
+        let searchMatch = true;
+        if (searchTerm && searchTerm.trim() !== "") {
+            const searchKeywords = searchTerm.toLowerCase().trim().split(/\s+/); // Split by spaces
+            
+            // Combine all relevant fields into a single searchable text
+            const searchableText = [
+                equipment.name,
+                equipment.assignedTo || "",
+                equipment.serialNumber,
+                equipment.subtype,
+                equipment.type,
+                equipment.tag.toString()
+            ].join(' ').toLowerCase();
+            
+            // All keywords must be found in the searchable text (AND operation)
+            searchMatch = searchKeywords.every(keyword => 
+                searchableText.includes(keyword)
+            );
+        }
+        
+        // AND operation - both conditions must be true
+        return statusMatch && searchMatch;
+    });
 
     return (
         <>
@@ -19,13 +54,13 @@ export default function EquipmentContent() {
 
                 <div className="flex w-full h-9 bg-white dark:bg-gray-900 border-b-2 border-r-2 border-gray-200 dark:border-gray-600 items-center justify-between px-4 shrink-0">
                     <span className="text-gray-600 dark:text-gray-300 text-sm">
-                        ({equipmentData.length}) equipment items
+                        ({filteredEquipment.length}) {t("equipment.itemsCount")}
                     </span>
                 </div>
 
                 <div className="w-full overflow-y-auto bg-gray-100 dark:bg-gray-800 p-6" style={{ height: 'calc(100vh - 164px)' }}>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-                        {equipmentData.map((equipment: Equipment, index: number) => (
+                        {filteredEquipment.map((equipment: Equipment, index: number) => (
                             <div key={equipment.id} className="bg-white dark:bg-gray-900 rounded-lg p-4 hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors duration-200 border border-gray-200 dark:border-gray-600 shadow-sm hover:shadow-md hover:border-blue-300 dark:hover:border-gray-500 cursor-pointer">
                                 <div className="flex flex-col items-center text-center">
                                     <div className="relative mb-3">

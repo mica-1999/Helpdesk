@@ -1,12 +1,22 @@
 "use client"
 import { useState } from "react";
+import { useTheme } from "@/context/ThemeContext";
+import { useLoading, LoadingSpinner } from "@/components/reusable/useLoading";
 import SearchEquipamento from "@/components/dashboard/equipamentos/SearchEquipamento";
 import EquipmentContent from "@/components/dashboard/equipamentos/EquipmentContent";
 
 export default function EquipmentPage() {
+    const { t } = useTheme();
+    // Use the reusable loading hook to prevent weird loading behavior
+    const isLoading = useLoading({ delay: 800 });
+    
     const [selectedStatus, setSelectedStatus] = useState<string[]>(["all"]);
     const [selectedType, setSelectedType] = useState<string[]>(["all"]);
     const [searchTerm, setSearchTerm] = useState<string | null>(null);
+
+    if (isLoading) {
+        return <LoadingSpinner message={t("loading.equipment")} />;
+    }
 
     return (
         <>
@@ -21,7 +31,10 @@ export default function EquipmentPage() {
             {/* Main content area - right side */}
             <div className="flex-1 bg-gray-100 dark:bg-gray-800 flex flex-col">
                 <div className="flex-1">
-                    <EquipmentContent />
+                    <EquipmentContent 
+                        selectedStatus={selectedStatus}
+                        searchTerm={searchTerm}
+                    />
                 </div>
             </div>
         </>

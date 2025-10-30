@@ -1,14 +1,23 @@
 // Import component u gonna use here 
 "use client";
+import { useState } from "react";
+import { useTheme } from "@/context/ThemeContext";
+import { useLoading, LoadingSpinner } from "@/components/reusable/useLoading";
 import Search from "@/components/dashboard/Search";
 import Pedidos from "@/components/dashboard/pedidos/Pedidos";
 import Footer from "@/components/dashboard/Footer";
 
-import { useState } from "react";
-
 export default function FrontPage() {
+    const { t } = useTheme();
+    // Use the reusable loading hook to prevent weird loading behavior
+    const isLoading = useLoading({ delay: 800 });
+    
     const [estado, setEstado] = useState("all");
     const [searchTerm, setSearchTerm] = useState<string | null>(null);
+
+    if (isLoading) {
+        return <LoadingSpinner message={t("loading.tickets")} />;
+    }
 
     return (
         <>

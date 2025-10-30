@@ -110,10 +110,27 @@ export default function StickyButton() {
                     </div>
 
                     <div id="themeStyles" className="flex flex-col mt-5">
-                        <div className="flex items-center justify-center bg-linear-to-r from-blue-500 to-blue-600 rounded-md h-8 p-2 w-fit text-[13px] text-white font-medium shadow-sm dark:from-blue-700 dark:to-blue-800">
-                            <h2>{t('themeSettings.theming')}</h2>
+                        <div className="flex items-center justify-between w-full">
+                            <div className="flex items-center justify-center bg-linear-to-r from-blue-500 to-blue-600 rounded-md h-8 p-2 w-fit text-[13px] text-white font-medium shadow-sm dark:from-blue-700 dark:to-blue-800">
+                                <h2>{t('themeSettings.theming')}</h2>
+                            </div>
+                            <div className="flex items-center gap-1">
+                                <button
+                                    className="w-9 h-9 rounded cursor-pointer transition-all duration-200 bg-gray-300 hover:bg-gray-400 dark:bg-gray-700 dark:hover:bg-gray-600 flex items-center justify-center"
+                                >
+                                    <i className="ri-layout-left-2-line text-[16px] text-gray-700 dark:text-gray-200"></i>
+                                </button>
+                                <button
+                                    className="w-9 h-9 rounded cursor-pointer transition-all duration-200 bg-gray-300 hover:bg-gray-400 dark:bg-gray-700 dark:hover:bg-gray-600 flex items-center justify-center"
+                                >
+                                    <i className="ri-layout-top-2-line text-[16px] text-gray-700 dark:text-gray-200"></i>
+                                </button>
+                            </div>
                         </div>
-                        <h2 className="text-[16px] font-semibold mt-5 text-gray-800 dark:text-white">{t('themeSettings.styleMode')}</h2>
+                        <div className="flex items-center justify-between w-full mt-5">
+                            <h2 className="text-[16px] font-semibold text-gray-800 dark:text-white">{t('themeSettings.styleMode')}</h2>
+                            <i className="ri-user-settings-line text-[14px] text-purple-600 dark:text-purple-300 cursor-pointer hover:text-purple-700 dark:hover:text-purple-200 transition-colors duration-200"></i>
+                        </div>
                         <div className="flex justify-between gap-3 mt-3 w-full">
                             {modeStyles.map((mode, index) => (
                                 <div key={index} className="flex flex-col w-1/3 justify-center">

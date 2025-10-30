@@ -8,6 +8,7 @@ import { PedidosProps } from "@/types/pedidos";
 export default function Pedidos({ selectedEstado, searchTerm }: PedidosProps) {
     const { t } = useTheme();
     const [pagina, setPagina] = useState(1);
+    const [showFilters, setShowFilters] = useState(false);
     const itemsPerPage = 7;
     
     // Filter tickets based on selected status and patID
@@ -63,7 +64,41 @@ export default function Pedidos({ selectedEstado, searchTerm }: PedidosProps) {
                 </div>
 
                 <div className="flex w-full h-16 bg-white dark:bg-gray-900 border-b-2 border-r-2 border-gray-200 dark:border-gray-600 items-center justify-between px-4">
-                    <button className="w-38 text-[#666cff] dark:text-[#a855f7] bg-white dark:bg-gray-800 hover:bg-blue-100 dark:hover:bg-gray-700 px-4 py-2 rounded-md cursor-pointer transition-colors duration-200 text-sm font-semibold border border-[#666cff] dark:border-[#a855f7]">{t("pedidos.addFilter")}</button>
+                    <div className="flex items-center gap-4">
+                        <button 
+                            onClick={() => setShowFilters(!showFilters)}
+                            className="w-38 text-[#666cff] dark:text-[#a855f7] bg-white dark:bg-gray-800 hover:bg-blue-100 dark:hover:bg-gray-700 px-4 py-2 rounded-md cursor-pointer transition-colors duration-200 text-sm font-semibold border border-[#666cff] dark:border-[#a855f7]"
+                        >
+                            {showFilters ? "- Hide Filter" : t("pedidos.addFilter")}
+                        </button>
+
+                        {/* Inline Filters with Fade Animation */}
+                        <div className={`flex items-center gap-4 ml-32 transition-all duration-300 ${
+                            showFilters ? 'opacity-100 transform translate-x-0' : 'opacity-0 transform -translate-x-4 pointer-events-none'
+                        }`}>
+                            {/* Data Início */}
+                            <input 
+                                type="date"
+                                className="h-9 px-3 border border-gray-300 dark:border-gray-600 rounded-md outline-none bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100 text-sm focus:border-[#666cff] dark:focus:border-[#7c3aed] transition-colors duration-200"
+                            />
+
+                            {/* Data Fim */}
+                            <input 
+                                type="date"
+                                className="h-9 px-3 border border-gray-300 dark:border-gray-600 rounded-md outline-none bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100 text-sm focus:border-[#666cff] dark:focus:border-[#7c3aed] transition-colors duration-200"
+                            />
+
+                            {/* Técnico Associado */}
+                            <select className="h-9 px-3 border border-gray-300 dark:border-gray-600 rounded-md outline-none bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100 text-sm focus:border-[#666cff] dark:focus:border-[#7c3aed] transition-colors duration-200 min-w-40">
+                                <option value="">Técnico Associado</option>
+                                <option value="joao-silva">João Silva</option>
+                                <option value="maria-santos">Maria Santos</option>
+                                <option value="pedro-oliveira">Pedro Oliveira</option>
+                                <option value="ana-costa">Ana Costa</option>
+                                <option value="carlos-mendes">Carlos Mendes</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
 
                 <div className="flex w-full h-9 bg-white dark:bg-gray-900 border-b-2 border-r-2 border-gray-200 dark:border-gray-600 items-center justify-between px-4">

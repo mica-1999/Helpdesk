@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function Sidebar() {
     return (
         <>  
-            <div className="w-24 bg-[#3A343C] h-full flex flex-col items-center justify-between">  
+            <div className="w-24 bg-[#F3F7F9] dark:bg-[#1E2939] h-full flex flex-col items-center justify-between">  
                 {/* Sidebar Items Top*/}
                 <div className="w-full">
                     <div className="w-full h-16 bg-[#666cff] dark:bg-[#7c3aed] flex items-center justify-center hover:bg-[#5a5fe6] dark:hover:bg-[#6d28d9] transition-colors duration-200 cursor-pointer">
