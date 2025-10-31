@@ -1,4 +1,9 @@
-// REVIEWED: 2025-05-05 - Good to go ✅
+/**
+ * Dashboard Footer Component
+ * Copy pasted from previous projects
+ * 
+ */
+
 "use client";
 import Link from 'next/link';
 import { useTheme } from '@/context/ThemeContext';

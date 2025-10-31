@@ -10,10 +10,12 @@ export default function EquipmentPage() {
     // Use the reusable loading hook to prevent weird loading behavior
     const isLoading = useLoading({ delay: 800 });
     
+    // States para múltipla seleção status/type e pesquisa
     const [selectedStatus, setSelectedStatus] = useState<string[]>(["all"]);
     const [selectedType, setSelectedType] = useState<string[]>(["all"]);
     const [searchTerm, setSearchTerm] = useState<string | null>(null);
 
+    // Loading spinner com mensagem traduzida
     if (isLoading) {
         return <LoadingSpinner message={t("loading.equipment")} />;
     }

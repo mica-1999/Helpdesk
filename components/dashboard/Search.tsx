@@ -1,19 +1,25 @@
+/**
+ * Search Component for Dashboard
+ * 
+ * Realistically could be reused in other sections with minor adjustments, TBD in the future
+ * is passing props to customize for different sections and reusing it
+ * 
+ * This component receives the props from parent component to manage search and filtering of tickets.
+ * And then it updates the states in the parent component accordingly, to be passed down to the Pedidos component.
+ */
+
+
 "use client";
 import { useState, useEffect } from "react";
 import { useTheme } from "@/context/ThemeContext";
 import { statusConfigs, getStatusStyling } from "@/data/searchData";
-
-interface SearchProps {
-    selectedEstado: string;
-    setSelectedEstado: (estado: string) => void;
-    searchTerm: string | null;
-    setSearchTerm: (searchTerm: string | null) => void;
-}
+import { SearchProps } from "@/types/pedidos";
 
 export default function Search({ selectedEstado, setSelectedEstado, searchTerm, setSearchTerm }: SearchProps) {
-    const { t } = useTheme();
-    const [placeholder, setPlaceholder] = useState("");
+    const { t } = useTheme(); // Translations e theme e sidebar e future color customizations
+    const [placeholder, setPlaceholder] = useState(""); // Placeholder do input de pesquisa
 
+    // Update placeholder on language change
     useEffect(() => {
         setPlaceholder(t("tickets.searchPlaceholder"));
     }, [t]);
@@ -23,6 +29,7 @@ export default function Search({ selectedEstado, setSelectedEstado, searchTerm, 
         setSearchTerm(e.target.value || null);
     };
 
+    // Handle focus and blur to manage placeholder
     const handleFocus = () => {
         setPlaceholder("");
     };

@@ -1,3 +1,11 @@
+/**
+ * Search Component for Equipamentos
+ * 
+ * Realistically could be reused in other sections with minor adjustments, TBD in the future
+ * is passing props to customize for different sections and reusing it
+ * 
+ */
+
 "use client";
 import { useState, useEffect } from "react";
 import { useTheme } from "@/context/ThemeContext";

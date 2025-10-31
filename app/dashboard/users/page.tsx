@@ -15,13 +15,14 @@ export default function FuncionarioPage() {
     const [selectedDepartamento, setSelectedDepartamento] = useState<string[]>(["GRM"]);
     const [searchTerm, setSearchTerm] = useState<string | null>(null);
 
-    // Testing
+    // Testing, remover dps
     useEffect(() => {
         console.log("Selected Secretaria:", selectedSecretaria);
         console.log("Selected Departamento:", selectedDepartamento);
         console.log("Search Term:", searchTerm);
     },[selectedSecretaria, selectedDepartamento, searchTerm]);
 
+    // Loading spinner com mensagem traduzida
     if (isLoading) {
         return <LoadingSpinner message={t("loading.users")} />;
     }

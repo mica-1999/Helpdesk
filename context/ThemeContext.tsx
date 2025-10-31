@@ -27,8 +27,16 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
         return "English";
     });
 
+    const [sidebarStyle, setSidebarStyle] = useState<string>(() => {
+        if (typeof window !== 'undefined') {
+            return localStorage.getItem('sidebarStyle') || "side";
+        }
+        return "side";
+    });
+
     const [savedTheme, setSavedTheme] = useState<string>(theme);
     const [savedLanguage, setSavedLanguage] = useState<string>(language);
+    const [savedSidebarStyle, setSavedSidebarStyle] = useState<string>(sidebarStyle);
 
     // Load preferences and save them to localStorage
     // This will only run once when the session is available
@@ -47,12 +55,15 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
                     if (data) {
                         setTheme(data.visualtheme);
                         setLanguage(data.language);
+                        setSidebarStyle(data.sidebarstyle || "side");
                         setSavedTheme(data.visualtheme);
                         setSavedLanguage(data.language);
+                        setSavedSidebarStyle(data.sidebarstyle || "side");
 
                         if (typeof window !== 'undefined') {
                             localStorage.setItem('theme', data.visualtheme);
                             localStorage.setItem('language', data.language);
+                            localStorage.setItem('sidebarStyle', data.sidebarstyle || "side");
                         }
                     }
                 }
@@ -103,6 +114,13 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
             localStorage.setItem('language', language);
         }
     }, [language]);
+
+    // Save sidebar style to localStorage when it changes
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            localStorage.setItem('sidebarStyle', sidebarStyle);
+        }
+    }, [sidebarStyle]);
 
     // Add a useEffect to control loading state
     useEffect(() => {
@@ -174,10 +192,14 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
             setTheme,
             language,
             setLanguage,
+            sidebarStyle,
+            setSidebarStyle,
             savedTheme,
             setSavedTheme,
             savedLanguage,
             setSavedLanguage,
+            savedSidebarStyle,
+            setSavedSidebarStyle,
             t,
             tArray,
             isLoading

@@ -4,6 +4,11 @@ export interface EquipmentProps {
     searchTerm: string | null;
 }
 
+export interface EquipmentContentProps {
+    selectedStatus: string[];
+    searchTerm: string | null;
+}
+
 export interface SearchEquipmentProps {
     selectedStatus: string[];
     setSelectedStatus: React.Dispatch<React.SetStateAction<string[]>>;

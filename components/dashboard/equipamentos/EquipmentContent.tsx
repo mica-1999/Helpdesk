@@ -1,12 +1,8 @@
 "use client"
 import { useTheme } from "@/context/ThemeContext";
 import { equipmentData, Equipment } from "@/data/equipmentData";
+import { EquipmentContentProps } from "@/types/equipment";
 import Image from "next/image";
-
-interface EquipmentContentProps {
-    selectedStatus: string[];
-    searchTerm: string | null;
-}
 
 export default function EquipmentContent({ selectedStatus, searchTerm }: EquipmentContentProps) {
     const { t } = useTheme();  // Funcao de traducao do contexto de tema

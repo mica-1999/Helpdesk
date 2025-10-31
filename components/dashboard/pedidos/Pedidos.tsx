@@ -1,3 +1,14 @@
+/**
+ * Main Pedidos Component for Dashboard
+ * 
+ * This component is responsible for displaying and managing the list of pedidos (requests) within the dashboard.
+ * It includes features such as filtering, searching, and pagination to enhance the user experience.
+ * 
+ * No DB integration yet, uses static data from ticketsData.ts for now. 
+ * When using a real database, there should be ordering, fetching, advanced filtering, etc.
+ * 
+ */
+
 "use client"
 import { useState, useMemo, useEffect } from "react"
 import Image from "next/image";

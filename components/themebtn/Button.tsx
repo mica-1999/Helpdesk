@@ -13,7 +13,15 @@ export default function StickyButton() {
 
     // State variables & hooks
     const [showConfig, setShowConfig] = useState(false)
-    const { theme, setTheme, language, setLanguage, savedTheme, setSavedTheme, savedLanguage, setSavedLanguage, t } = useTheme();
+    const { 
+        theme, setTheme, 
+        language, setLanguage, 
+        sidebarStyle, setSidebarStyle,
+        savedTheme, setSavedTheme, 
+        savedLanguage, setSavedLanguage, 
+        savedSidebarStyle, setSavedSidebarStyle,
+        t 
+    } = useTheme();
     const configRef = useRef<HTMLDivElement>(null)
 
     // Handle click outside of the config menu to close it
@@ -31,7 +39,8 @@ export default function StickyButton() {
                     },
                     body: JSON.stringify({
                         visualTheme: theme,
-                        language: language
+                        language: language,
+                        sidebarStyle: sidebarStyle
                     })
                 });
             }
@@ -43,6 +52,7 @@ export default function StickyButton() {
         // Update the "saved" states to match current selections (for reset functionality)
         setSavedTheme(theme);
         setSavedLanguage(language);
+        setSavedSidebarStyle(sidebarStyle);
 
         // Close the config menu and show success message
         setShowConfig(false)
@@ -53,6 +63,7 @@ export default function StickyButton() {
     const handleReset = (method: HandleResetProps["method"]) => {
         setLanguage(savedLanguage);
         setTheme(savedTheme);
+        setSidebarStyle(savedSidebarStyle);
 
         // Shows only if user doesn't click on the cancel button and instead clicks on the reset button
         if (method !== "cancel") {
@@ -116,14 +127,32 @@ export default function StickyButton() {
                             </div>
                             <div className="flex items-center gap-1">
                                 <button
-                                    className="w-9 h-9 rounded cursor-pointer transition-all duration-200 bg-gray-300 hover:bg-gray-400 dark:bg-gray-700 dark:hover:bg-gray-600 flex items-center justify-center"
+                                    onClick={() => setSidebarStyle("side")}
+                                    className={`w-9 h-9 rounded cursor-pointer transition-all duration-200 flex items-center justify-center ${
+                                        sidebarStyle === "side" 
+                                            ? "bg-purple-500 hover:bg-purple-600 dark:bg-purple-600 dark:hover:bg-purple-700" 
+                                            : "bg-gray-300 hover:bg-gray-400 dark:bg-gray-700 dark:hover:bg-gray-600"
+                                    }`}
                                 >
-                                    <i className="ri-layout-left-2-line text-[16px] text-gray-700 dark:text-gray-200"></i>
+                                    <i className={`ri-layout-left-2-line text-[16px] ${
+                                        sidebarStyle === "side" 
+                                            ? "text-white" 
+                                            : "text-gray-700 dark:text-gray-200"
+                                    }`}></i>
                                 </button>
                                 <button
-                                    className="w-9 h-9 rounded cursor-pointer transition-all duration-200 bg-gray-300 hover:bg-gray-400 dark:bg-gray-700 dark:hover:bg-gray-600 flex items-center justify-center"
+                                    onClick={() => setSidebarStyle("top")}
+                                    className={`w-9 h-9 rounded cursor-pointer transition-all duration-200 flex items-center justify-center ${
+                                        sidebarStyle === "top" 
+                                            ? "bg-purple-500 hover:bg-purple-600 dark:bg-purple-600 dark:hover:bg-purple-700" 
+                                            : "bg-gray-300 hover:bg-gray-400 dark:bg-gray-700 dark:hover:bg-gray-600"
+                                    }`}
                                 >
-                                    <i className="ri-layout-top-2-line text-[16px] text-gray-700 dark:text-gray-200"></i>
+                                    <i className={`ri-layout-top-2-line text-[16px] ${
+                                        sidebarStyle === "top" 
+                                            ? "text-white" 
+                                            : "text-gray-700 dark:text-gray-200"
+                                    }`}></i>
                                 </button>
                             </div>
                         </div>
